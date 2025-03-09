@@ -1,7 +1,7 @@
-// $ANTLR 3.5.2 semantica.g 2025-03-08 13:18:45
+// $ANTLR 3.5.2 semantica.g 2025-03-09 09:37:10
 
-    import java.util.HashMap;
-
+        import java.util.HashMap;
+    
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -12,11 +12,10 @@ import java.util.ArrayList;
 public class semanticaParser extends Parser {
 	public static final String[] tokenNames = new String[] {
 		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "CDOUBLE", "CINT", "COMMA", "DOUBLE", 
-		"ID", "INT", "PRIVATE", "PROTECTED", "PUBLIC", "SEMICOLON", "WS", "'('", 
-		"')'", "'*'", "'+'", "'-'", "'/'", "'='", "'class'", "'{'", "'}'"
+		"ID", "INT", "PRIVATE", "PROTECTED", "PUBLIC", "SEMICOLON", "VOID", "WS", 
+		"'('", "')'", "'*'", "'+'", "'-'", "'/'", "'='", "'class'", "'{'", "'}'"
 	};
 	public static final int EOF=-1;
-	public static final int T__15=15;
 	public static final int T__16=16;
 	public static final int T__17=17;
 	public static final int T__18=18;
@@ -26,6 +25,7 @@ public class semanticaParser extends Parser {
 	public static final int T__22=22;
 	public static final int T__23=23;
 	public static final int T__24=24;
+	public static final int T__25=25;
 	public static final int CDOUBLE=4;
 	public static final int CINT=5;
 	public static final int COMMA=6;
@@ -36,7 +36,8 @@ public class semanticaParser extends Parser {
 	public static final int PROTECTED=11;
 	public static final int PUBLIC=12;
 	public static final int SEMICOLON=13;
-	public static final int WS=14;
+	public static final int VOID=14;
+	public static final int WS=15;
 
 	// delegates
 	public Parser[] getDelegates() {
@@ -57,59 +58,58 @@ public class semanticaParser extends Parser {
 	@Override public String getGrammarFileName() { return "semantica.g"; }
 
 
-	    HashMap TSG = new HashMap();
-	    HashMap TSL = new HashMap();
+	        HashMap TSG = new HashMap();
+	        HashMap TSL = new HashMap();
 
-	   public void pushTSG(String id, String tipo) {
-	    // Verificamos si ya existe en la tabla de símbolos
-	    Integer se_encuentra = (Integer) TSG.get(id);
-	    
-	    if (se_encuentra == null) {
-	       
-	        if (tipo.compareTo("int") == 0) {
-	            TSG.put(id, 1);  
-	        } 
-	        else if (tipo.compareTo("double") == 0) {
-	            TSG.put(id, 2); 
-	        } 
-	        else if (tipo.compareTo("class") == 0) {  
-	            TSG.put(id, 3);  
-	        } 
-	        else if (tipo.compareTo("metodo") == 0) {
-	            TSG.put(id, 4);  
-	        }
-	    } else {
-	        if (tipo.compareTo("metodo") == 0 && se_encuentra == 4) {
-	            System.err.println("Error: Método duplicado: " + id);
-	        } else if (tipo.compareTo("class") == 0 && se_encuentra == 3) {
-	            System.err.println("Error: Clase duplicada: " + id);
-	        } else {
-	            System.err.println("Error redeclarando: " + id);
-	        }
-	    }
-	}
-
-	    public void pushTSL(String id, String tipo){
-	        Integer se_encuentra = (Integer) TSL.get(id);
+	    public void pushTSG(String id, String tipo) {
+	        Integer se_encuentra = (Integer) TSG.get(id);
 	        
 	        if (se_encuentra == null) {
-	            if (tipo.compareTo("int") == 0) TSL.put(id, 1);
-	            else if (tipo.compareTo("double") == 0) TSL.put(id, 2);
-	            else System.err.println("Tipo desconocido... " + id);
+	        
+	            if (tipo.compareTo("int") == 0) {
+	                TSG.put(id, 1);  
+	            } 
+	            else if (tipo.compareTo("double") == 0) {
+	                TSG.put(id, 2); 
+	            } 
+	            else if (tipo.compareTo("class") == 0) {  
+	                TSG.put(id, 3);  
+	            } 
+	            else if (tipo.compareTo("metodo") == 0) {
+	                TSG.put(id, 4);  
+	            }
+	        } else {
+	            if (tipo.compareTo("metodo") == 0 && se_encuentra == 4) {
+	                System.err.println("Error: Método duplicado: " + id);
+	            } else if (tipo.compareTo("class") == 0 && se_encuentra == 3) {
+	                System.err.println("Error: Clase duplicada: " + id);
+	            } else {
+	                System.err.println("Error redeclarando: " + id);
+	            }
 	        }
-	        else System.err.println("Error redeclarando: " + id);
 	    }
 
+	        public void pushTSL(String id, String tipo){
+	            Integer se_encuentra = (Integer) TSL.get(id);
+	            
+	            if (se_encuentra == null) {
+	                if (tipo.compareTo("int") == 0) TSL.put(id, 1);
+	                else if (tipo.compareTo("double") == 0) TSL.put(id, 2);
+	                else System.err.println("Tipo desconocido... " + id);
+	            }
+	            else System.err.println("Error redeclarando: " + id);
+	        }
+	    
 
 
 	// $ANTLR start "program"
-	// semantica.g:52:1: program : ( clase )+ ;
+	// semantica.g:51:5: program : ( clase )+ ;
 	public final void program() throws RecognitionException {
 		try {
-			// semantica.g:52:9: ( ( clase )+ )
-			// semantica.g:52:11: ( clase )+
+			// semantica.g:51:13: ( ( clase )+ )
+			// semantica.g:51:15: ( clase )+
 			{
-			// semantica.g:52:11: ( clase )+
+			// semantica.g:51:15: ( clase )+
 			int cnt1=0;
 			loop1:
 			while (true) {
@@ -121,9 +121,9 @@ public class semanticaParser extends Parser {
 
 				switch (alt1) {
 				case 1 :
-					// semantica.g:52:11: clase
+					// semantica.g:51:15: clase
 					{
-					pushFollow(FOLLOW_clase_in_program22);
+					pushFollow(FOLLOW_clase_in_program38);
 					clase();
 					state._fsp--;
 
@@ -154,36 +154,36 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "clase"
-	// semantica.g:54:1: clase : modificAcceso 'class' ID '{' ( miembro )* '}' ;
+	// semantica.g:53:5: clase : modificAcceso 'class' ID '{' ( miembro )* '}' ;
 	public final void clase() throws RecognitionException {
 		Token ID1=null;
 
 		try {
-			// semantica.g:54:7: ( modificAcceso 'class' ID '{' ( miembro )* '}' )
-			// semantica.g:54:9: modificAcceso 'class' ID '{' ( miembro )* '}'
+			// semantica.g:53:11: ( modificAcceso 'class' ID '{' ( miembro )* '}' )
+			// semantica.g:53:13: modificAcceso 'class' ID '{' ( miembro )* '}'
 			{
-			pushFollow(FOLLOW_modificAcceso_in_clase32);
+			pushFollow(FOLLOW_modificAcceso_in_clase52);
 			modificAcceso();
 			state._fsp--;
 
-			match(input,22,FOLLOW_22_in_clase34); 
-			ID1=(Token)match(input,ID,FOLLOW_ID_in_clase36); 
+			match(input,23,FOLLOW_23_in_clase54); 
+			ID1=(Token)match(input,ID,FOLLOW_ID_in_clase56); 
 			pushTSG((ID1!=null?ID1.getText():null), "class");
-			match(input,23,FOLLOW_23_in_clase40); 
-			// semantica.g:55:5: ( miembro )*
+			match(input,24,FOLLOW_24_in_clase60); 
+			// semantica.g:54:9: ( miembro )*
 			loop2:
 			while (true) {
 				int alt2=2;
 				int LA2_0 = input.LA(1);
-				if ( (LA2_0==DOUBLE||(LA2_0 >= INT && LA2_0 <= PUBLIC)) ) {
+				if ( (LA2_0==DOUBLE||(LA2_0 >= INT && LA2_0 <= PUBLIC)||LA2_0==VOID) ) {
 					alt2=1;
 				}
 
 				switch (alt2) {
 				case 1 :
-					// semantica.g:55:5: miembro
+					// semantica.g:54:9: miembro
 					{
-					pushFollow(FOLLOW_miembro_in_clase46);
+					pushFollow(FOLLOW_miembro_in_clase70);
 					miembro();
 					state._fsp--;
 
@@ -195,7 +195,7 @@ public class semanticaParser extends Parser {
 				}
 			}
 
-			match(input,24,FOLLOW_24_in_clase49); 
+			match(input,25,FOLLOW_25_in_clase77); 
 			}
 
 		}
@@ -212,16 +212,71 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "miembro"
-	// semantica.g:58:1: miembro : ( metodo | atributo );
+	// semantica.g:57:5: miembro : ( metodo | atributo );
 	public final void miembro() throws RecognitionException {
 		try {
-			// semantica.g:58:9: ( metodo | atributo )
+			// semantica.g:57:13: ( metodo | atributo )
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( ((LA3_0 >= PRIVATE && LA3_0 <= PUBLIC)) ) {
-				alt3=1;
+				int LA3_1 = input.LA(2);
+				if ( (LA3_1==DOUBLE||LA3_1==INT||LA3_1==VOID) ) {
+					int LA3_3 = input.LA(3);
+					if ( (LA3_3==ID) ) {
+						int LA3_4 = input.LA(4);
+						if ( (LA3_4==16) ) {
+							alt3=1;
+						}
+						else if ( (LA3_4==COMMA||LA3_4==SEMICOLON) ) {
+							alt3=2;
+						}
+
+						else {
+							int nvaeMark = input.mark();
+							try {
+								for (int nvaeConsume = 0; nvaeConsume < 4 - 1; nvaeConsume++) {
+									input.consume();
+								}
+								NoViableAltException nvae =
+									new NoViableAltException("", 3, 4, input);
+								throw nvae;
+							} finally {
+								input.rewind(nvaeMark);
+							}
+						}
+
+					}
+
+					else {
+						int nvaeMark = input.mark();
+						try {
+							for (int nvaeConsume = 0; nvaeConsume < 3 - 1; nvaeConsume++) {
+								input.consume();
+							}
+							NoViableAltException nvae =
+								new NoViableAltException("", 3, 3, input);
+							throw nvae;
+						} finally {
+							input.rewind(nvaeMark);
+						}
+					}
+
+				}
+
+				else {
+					int nvaeMark = input.mark();
+					try {
+						input.consume();
+						NoViableAltException nvae =
+							new NoViableAltException("", 3, 1, input);
+						throw nvae;
+					} finally {
+						input.rewind(nvaeMark);
+					}
+				}
+
 			}
-			else if ( (LA3_0==DOUBLE||LA3_0==INT) ) {
+			else if ( (LA3_0==DOUBLE||LA3_0==INT||LA3_0==VOID) ) {
 				alt3=2;
 			}
 
@@ -233,18 +288,18 @@ public class semanticaParser extends Parser {
 
 			switch (alt3) {
 				case 1 :
-					// semantica.g:58:11: metodo
+					// semantica.g:57:15: metodo
 					{
-					pushFollow(FOLLOW_metodo_in_miembro57);
+					pushFollow(FOLLOW_metodo_in_miembro89);
 					metodo();
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// semantica.g:58:20: atributo
+					// semantica.g:57:24: atributo
 					{
-					pushFollow(FOLLOW_atributo_in_miembro61);
+					pushFollow(FOLLOW_atributo_in_miembro93);
 					atributo();
 					state._fsp--;
 
@@ -266,35 +321,35 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "metodo"
-	// semantica.g:60:1: metodo : modificAcceso tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}' ;
+	// semantica.g:59:5: metodo : modificAcceso tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}' ;
 	public final void metodo() throws RecognitionException {
 		Token id1=null;
 
 		try {
-			// semantica.g:60:8: ( modificAcceso tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}' )
-			// semantica.g:60:10: modificAcceso tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}'
+			// semantica.g:59:12: ( modificAcceso tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}' )
+			// semantica.g:59:14: modificAcceso tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}'
 			{
-			pushFollow(FOLLOW_modificAcceso_in_metodo70);
+			pushFollow(FOLLOW_modificAcceso_in_metodo106);
 			modificAcceso();
 			state._fsp--;
 
-			pushFollow(FOLLOW_tipo_in_metodo72);
+			pushFollow(FOLLOW_tipo_in_metodo108);
 			tipo();
 			state._fsp--;
 
-			id1=(Token)match(input,ID,FOLLOW_ID_in_metodo76); 
-			match(input,15,FOLLOW_15_in_metodo78); 
-			// semantica.g:60:40: ( decl_args )?
+			id1=(Token)match(input,ID,FOLLOW_ID_in_metodo112); 
+			match(input,16,FOLLOW_16_in_metodo114); 
+			// semantica.g:59:44: ( decl_args )?
 			int alt4=2;
 			int LA4_0 = input.LA(1);
-			if ( (LA4_0==DOUBLE||LA4_0==INT) ) {
+			if ( (LA4_0==DOUBLE||LA4_0==INT||LA4_0==VOID) ) {
 				alt4=1;
 			}
 			switch (alt4) {
 				case 1 :
-					// semantica.g:60:40: decl_args
+					// semantica.g:59:44: decl_args
 					{
-					pushFollow(FOLLOW_decl_args_in_metodo80);
+					pushFollow(FOLLOW_decl_args_in_metodo116);
 					decl_args();
 					state._fsp--;
 
@@ -303,25 +358,25 @@ public class semanticaParser extends Parser {
 
 			}
 
-			match(input,16,FOLLOW_16_in_metodo83); 
+			match(input,17,FOLLOW_17_in_metodo119); 
 			 
-			            pushTSG((id1!=null?id1.getText():null),"metodo"); 
-			        
-			match(input,23,FOLLOW_23_in_metodo105); 
-			// semantica.g:65:13: ( instruccion )*
+			                pushTSG((id1!=null?id1.getText():null),"metodo"); 
+			            
+			match(input,24,FOLLOW_24_in_metodo149); 
+			// semantica.g:64:17: ( instruccion )*
 			loop5:
 			while (true) {
 				int alt5=2;
 				int LA5_0 = input.LA(1);
-				if ( ((LA5_0 >= DOUBLE && LA5_0 <= INT)) ) {
+				if ( ((LA5_0 >= DOUBLE && LA5_0 <= INT)||LA5_0==VOID) ) {
 					alt5=1;
 				}
 
 				switch (alt5) {
 				case 1 :
-					// semantica.g:65:13: instruccion
+					// semantica.g:64:17: instruccion
 					{
-					pushFollow(FOLLOW_instruccion_in_metodo121);
+					pushFollow(FOLLOW_instruccion_in_metodo169);
 					instruccion();
 					state._fsp--;
 
@@ -333,7 +388,7 @@ public class semanticaParser extends Parser {
 				}
 			}
 
-			match(input,24,FOLLOW_24_in_metodo132); 
+			match(input,25,FOLLOW_25_in_metodo184); 
 			TSL.clear();
 			}
 
@@ -351,22 +406,66 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "atributo"
-	// semantica.g:68:1: atributo : tipo ID SEMICOLON ;
+	// semantica.g:67:1: atributo : ( modificAcceso )? tipo id1= ID ( COMMA id2= ID )* SEMICOLON ;
 	public final void atributo() throws RecognitionException {
-		Token ID2=null;
-		ParserRuleReturnScope tipo3 =null;
+		Token id1=null;
+		Token id2=null;
+		ParserRuleReturnScope tipo2 =null;
 
 		try {
-			// semantica.g:68:10: ( tipo ID SEMICOLON )
-			// semantica.g:68:12: tipo ID SEMICOLON
+			// semantica.g:67:10: ( ( modificAcceso )? tipo id1= ID ( COMMA id2= ID )* SEMICOLON )
+			// semantica.g:67:12: ( modificAcceso )? tipo id1= ID ( COMMA id2= ID )* SEMICOLON
 			{
-			pushFollow(FOLLOW_tipo_in_atributo143);
-			tipo3=tipo();
+			// semantica.g:67:12: ( modificAcceso )?
+			int alt6=2;
+			int LA6_0 = input.LA(1);
+			if ( ((LA6_0 >= PRIVATE && LA6_0 <= PUBLIC)) ) {
+				alt6=1;
+			}
+			switch (alt6) {
+				case 1 :
+					// semantica.g:67:12: modificAcceso
+					{
+					pushFollow(FOLLOW_modificAcceso_in_atributo195);
+					modificAcceso();
+					state._fsp--;
+
+					}
+					break;
+
+			}
+
+			pushFollow(FOLLOW_tipo_in_atributo198);
+			tipo2=tipo();
 			state._fsp--;
 
-			ID2=(Token)match(input,ID,FOLLOW_ID_in_atributo145); 
-			 pushTSG((ID2!=null?ID2.getText():null), (tipo3!=null?input.toString(tipo3.start,tipo3.stop):null)); 
-			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_atributo149); 
+			id1=(Token)match(input,ID,FOLLOW_ID_in_atributo202); 
+			 pushTSG((id1!=null?id1.getText():null), (tipo2!=null?input.toString(tipo2.start,tipo2.stop):null)); 
+			// semantica.g:68:12: ( COMMA id2= ID )*
+			loop7:
+			while (true) {
+				int alt7=2;
+				int LA7_0 = input.LA(1);
+				if ( (LA7_0==COMMA) ) {
+					alt7=1;
+				}
+
+				switch (alt7) {
+				case 1 :
+					// semantica.g:68:13: COMMA id2= ID
+					{
+					match(input,COMMA,FOLLOW_COMMA_in_atributo219); 
+					id2=(Token)match(input,ID,FOLLOW_ID_in_atributo223); 
+					 pushTSG((id2!=null?id2.getText():null), (tipo2!=null?input.toString(tipo2.start,tipo2.stop):null)); 
+					}
+					break;
+
+				default :
+					break loop7;
+				}
+			}
+
+			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_atributo241); 
 			}
 
 		}
@@ -383,39 +482,39 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "instruccion"
-	// semantica.g:70:1: instruccion : ( asignacion | decl_local );
+	// semantica.g:71:5: instruccion : ( asignacion | decl_local );
 	public final void instruccion() throws RecognitionException {
 		try {
-			// semantica.g:70:13: ( asignacion | decl_local )
-			int alt6=2;
-			int LA6_0 = input.LA(1);
-			if ( (LA6_0==ID) ) {
-				alt6=1;
+			// semantica.g:71:17: ( asignacion | decl_local )
+			int alt8=2;
+			int LA8_0 = input.LA(1);
+			if ( (LA8_0==ID) ) {
+				alt8=1;
 			}
-			else if ( (LA6_0==DOUBLE||LA6_0==INT) ) {
-				alt6=2;
+			else if ( (LA8_0==DOUBLE||LA8_0==INT||LA8_0==VOID) ) {
+				alt8=2;
 			}
 
 			else {
 				NoViableAltException nvae =
-					new NoViableAltException("", 6, 0, input);
+					new NoViableAltException("", 8, 0, input);
 				throw nvae;
 			}
 
-			switch (alt6) {
+			switch (alt8) {
 				case 1 :
-					// semantica.g:70:15: asignacion
+					// semantica.g:71:19: asignacion
 					{
-					pushFollow(FOLLOW_asignacion_in_instruccion157);
+					pushFollow(FOLLOW_asignacion_in_instruccion253);
 					asignacion();
 					state._fsp--;
 
 					}
 					break;
 				case 2 :
-					// semantica.g:70:28: decl_local
+					// semantica.g:71:32: decl_local
 					{
-					pushFollow(FOLLOW_decl_local_in_instruccion161);
+					pushFollow(FOLLOW_decl_local_in_instruccion257);
 					decl_local();
 					state._fsp--;
 
@@ -437,39 +536,39 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "asignacion"
-	// semantica.g:71:1: asignacion : ID '=' expr SEMICOLON ;
+	// semantica.g:73:5: asignacion : ID '=' expr SEMICOLON ;
 	public final void asignacion() throws RecognitionException {
-		Token ID4=null;
-		int expr5 =0;
+		Token ID3=null;
+		int expr4 =0;
 
 		try {
-			// semantica.g:71:12: ( ID '=' expr SEMICOLON )
-			// semantica.g:71:14: ID '=' expr SEMICOLON
+			// semantica.g:73:16: ( ID '=' expr SEMICOLON )
+			// semantica.g:73:18: ID '=' expr SEMICOLON
 			{
-			ID4=(Token)match(input,ID,FOLLOW_ID_in_asignacion168); 
-			match(input,21,FOLLOW_21_in_asignacion170); 
-			pushFollow(FOLLOW_expr_in_asignacion172);
-			expr5=expr();
+			ID3=(Token)match(input,ID,FOLLOW_ID_in_asignacion269); 
+			match(input,22,FOLLOW_22_in_asignacion271); 
+			pushFollow(FOLLOW_expr_in_asignacion273);
+			expr4=expr();
 			state._fsp--;
 
 
-			    Integer tipoVar = (Integer) TSL.get((ID4!=null?ID4.getText():null));
+			        Integer tipoVar = (Integer) TSL.get((ID3!=null?ID3.getText():null));
+			        
+			        if (tipoVar == null) {  
+			            tipoVar = (Integer) TSG.get((ID3!=null?ID3.getText():null));
+			        }
+			        
+			        if (tipoVar == null) {  
+			            System.err.println("Error: Variable '" + (ID3!=null?ID3.getText():null) + "' no fue declarada.");
+			        } else if (tipoVar == 3 || expr4 == 3) { 
+			            System.err.println("Error en asignación a '" + (ID3!=null?ID3.getText():null) + "' debido a error en la expresión.");
+			        } else if (tipoVar != expr4) {  
+			            System.err.println("Error: Tipos incompatibles en asignación a '" + (ID3!=null?ID3.getText():null) + "' (" + 
+			                            (tipoVar == 1 ? "int" : "double") + " = " + 
+			                            (expr4 == 1 ? "int" : "double") + ").");
+			        }
 			    
-			    if (tipoVar == null) {  
-			        tipoVar = (Integer) TSG.get((ID4!=null?ID4.getText():null));
-			    }
-			    
-			    if (tipoVar == null) {  
-			        System.err.println("Error: Variable '" + (ID4!=null?ID4.getText():null) + "' no fue declarada.");
-			    } else if (tipoVar == 3 || expr5 == 3) { 
-			        System.err.println("Error en asignación a '" + (ID4!=null?ID4.getText():null) + "' debido a error en la expresión.");
-			    } else if (tipoVar != expr5) {  
-			        System.err.println("Error: Tipos incompatibles en asignación a '" + (ID4!=null?ID4.getText():null) + "' (" + 
-			                           (tipoVar == 1 ? "int" : "double") + " = " + 
-			                           (expr5 == 1 ? "int" : "double") + ").");
-			    }
-
-			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_asignacion176); 
+			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_asignacion277); 
 			}
 
 		}
@@ -486,7 +585,7 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "decl_args"
-	// semantica.g:89:1: decl_args : tipo1= tipo id1= ID ( COMMA tipo2= tipo id2= ID )* ;
+	// semantica.g:91:5: decl_args : tipo1= tipo id1= ID ( COMMA tipo2= tipo id2= ID )* ;
 	public final void decl_args() throws RecognitionException {
 		Token id1=null;
 		Token id2=null;
@@ -494,40 +593,40 @@ public class semanticaParser extends Parser {
 		ParserRuleReturnScope tipo2 =null;
 
 		try {
-			// semantica.g:89:11: (tipo1= tipo id1= ID ( COMMA tipo2= tipo id2= ID )* )
-			// semantica.g:89:13: tipo1= tipo id1= ID ( COMMA tipo2= tipo id2= ID )*
+			// semantica.g:91:15: (tipo1= tipo id1= ID ( COMMA tipo2= tipo id2= ID )* )
+			// semantica.g:91:17: tipo1= tipo id1= ID ( COMMA tipo2= tipo id2= ID )*
 			{
-			pushFollow(FOLLOW_tipo_in_decl_args186);
+			pushFollow(FOLLOW_tipo_in_decl_args291);
 			tipo1=tipo();
 			state._fsp--;
 
-			id1=(Token)match(input,ID,FOLLOW_ID_in_decl_args190); 
+			id1=(Token)match(input,ID,FOLLOW_ID_in_decl_args295); 
 			pushTSL((id1!=null?id1.getText():null), (tipo1!=null?input.toString(tipo1.start,tipo1.stop):null));
-			// semantica.g:90:5: ( COMMA tipo2= tipo id2= ID )*
-			loop7:
+			// semantica.g:92:9: ( COMMA tipo2= tipo id2= ID )*
+			loop9:
 			while (true) {
-				int alt7=2;
-				int LA7_0 = input.LA(1);
-				if ( (LA7_0==COMMA) ) {
-					alt7=1;
+				int alt9=2;
+				int LA9_0 = input.LA(1);
+				if ( (LA9_0==COMMA) ) {
+					alt9=1;
 				}
 
-				switch (alt7) {
+				switch (alt9) {
 				case 1 :
-					// semantica.g:90:6: COMMA tipo2= tipo id2= ID
+					// semantica.g:92:10: COMMA tipo2= tipo id2= ID
 					{
-					match(input,COMMA,FOLLOW_COMMA_in_decl_args201); 
-					pushFollow(FOLLOW_tipo_in_decl_args205);
+					match(input,COMMA,FOLLOW_COMMA_in_decl_args310); 
+					pushFollow(FOLLOW_tipo_in_decl_args314);
 					tipo2=tipo();
 					state._fsp--;
 
-					id2=(Token)match(input,ID,FOLLOW_ID_in_decl_args209); 
+					id2=(Token)match(input,ID,FOLLOW_ID_in_decl_args318); 
 					pushTSL((id2!=null?id2.getText():null), (tipo2!=null?input.toString(tipo2.start,tipo2.stop):null));
 					}
 					break;
 
 				default :
-					break loop7;
+					break loop9;
 				}
 			}
 
@@ -547,47 +646,47 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "decl_local"
-	// semantica.g:92:1: decl_local : tipo id1= ID ( ',' id2= ID )* SEMICOLON ;
+	// semantica.g:94:5: decl_local : tipo id1= ID ( ',' id2= ID )* SEMICOLON ;
 	public final void decl_local() throws RecognitionException {
 		Token id1=null;
 		Token id2=null;
-		ParserRuleReturnScope tipo6 =null;
+		ParserRuleReturnScope tipo5 =null;
 
 		try {
-			// semantica.g:92:12: ( tipo id1= ID ( ',' id2= ID )* SEMICOLON )
-			// semantica.g:92:14: tipo id1= ID ( ',' id2= ID )* SEMICOLON
+			// semantica.g:94:16: ( tipo id1= ID ( ',' id2= ID )* SEMICOLON )
+			// semantica.g:94:18: tipo id1= ID ( ',' id2= ID )* SEMICOLON
 			{
-			pushFollow(FOLLOW_tipo_in_decl_local221);
-			tipo6=tipo();
+			pushFollow(FOLLOW_tipo_in_decl_local334);
+			tipo5=tipo();
 			state._fsp--;
 
-			id1=(Token)match(input,ID,FOLLOW_ID_in_decl_local225); 
-			pushTSL((id1!=null?id1.getText():null), (tipo6!=null?input.toString(tipo6.start,tipo6.stop):null));
-			// semantica.g:92:60: ( ',' id2= ID )*
-			loop8:
+			id1=(Token)match(input,ID,FOLLOW_ID_in_decl_local338); 
+			pushTSL((id1!=null?id1.getText():null), (tipo5!=null?input.toString(tipo5.start,tipo5.stop):null));
+			// semantica.g:94:64: ( ',' id2= ID )*
+			loop10:
 			while (true) {
-				int alt8=2;
-				int LA8_0 = input.LA(1);
-				if ( (LA8_0==COMMA) ) {
-					alt8=1;
+				int alt10=2;
+				int LA10_0 = input.LA(1);
+				if ( (LA10_0==COMMA) ) {
+					alt10=1;
 				}
 
-				switch (alt8) {
+				switch (alt10) {
 				case 1 :
-					// semantica.g:92:61: ',' id2= ID
+					// semantica.g:94:65: ',' id2= ID
 					{
-					match(input,COMMA,FOLLOW_COMMA_in_decl_local230); 
-					id2=(Token)match(input,ID,FOLLOW_ID_in_decl_local235); 
-					pushTSL((id2!=null?id2.getText():null), (tipo6!=null?input.toString(tipo6.start,tipo6.stop):null));
+					match(input,COMMA,FOLLOW_COMMA_in_decl_local343); 
+					id2=(Token)match(input,ID,FOLLOW_ID_in_decl_local348); 
+					pushTSL((id2!=null?id2.getText():null), (tipo5!=null?input.toString(tipo5.start,tipo5.stop):null));
 					}
 					break;
 
 				default :
-					break loop8;
+					break loop10;
 				}
 			}
 
-			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_decl_local241); 
+			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_decl_local354); 
 			}
 
 		}
@@ -604,7 +703,7 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "expr"
-	// semantica.g:95:1: expr returns [int tipo] : m1= multExpr (op= ( '+' | '-' ) m2= multExpr )* ;
+	// semantica.g:97:5: expr returns [int tipo] : m1= multExpr (op= ( '+' | '-' ) m2= multExpr )* ;
 	public final int expr() throws RecognitionException {
 		int tipo = 0;
 
@@ -614,31 +713,31 @@ public class semanticaParser extends Parser {
 		int m2 =0;
 
 		try {
-			// semantica.g:96:5: (m1= multExpr (op= ( '+' | '-' ) m2= multExpr )* )
-			// semantica.g:96:7: m1= multExpr (op= ( '+' | '-' ) m2= multExpr )*
+			// semantica.g:98:9: (m1= multExpr (op= ( '+' | '-' ) m2= multExpr )* )
+			// semantica.g:98:11: m1= multExpr (op= ( '+' | '-' ) m2= multExpr )*
 			{
-			pushFollow(FOLLOW_multExpr_in_expr262);
+			pushFollow(FOLLOW_multExpr_in_expr383);
 			m1=multExpr();
 			state._fsp--;
 
 			 
-			        tipo = m1;
-			    
-			// semantica.g:99:7: (op= ( '+' | '-' ) m2= multExpr )*
-			loop9:
+			            tipo = m1;
+			        
+			// semantica.g:101:9: (op= ( '+' | '-' ) m2= multExpr )*
+			loop11:
 			while (true) {
-				int alt9=2;
-				int LA9_0 = input.LA(1);
-				if ( ((LA9_0 >= 18 && LA9_0 <= 19)) ) {
-					alt9=1;
+				int alt11=2;
+				int LA11_0 = input.LA(1);
+				if ( ((LA11_0 >= 19 && LA11_0 <= 20)) ) {
+					alt11=1;
 				}
 
-				switch (alt9) {
+				switch (alt11) {
 				case 1 :
-					// semantica.g:99:8: op= ( '+' | '-' ) m2= multExpr
+					// semantica.g:101:10: op= ( '+' | '-' ) m2= multExpr
 					{
 					op=input.LT(1);
-					if ( (input.LA(1) >= 18 && input.LA(1) <= 19) ) {
+					if ( (input.LA(1) >= 19 && input.LA(1) <= 20) ) {
 						input.consume();
 						state.errorRecovery=false;
 					}
@@ -646,23 +745,23 @@ public class semanticaParser extends Parser {
 						MismatchedSetException mse = new MismatchedSetException(null,input);
 						throw mse;
 					}
-					pushFollow(FOLLOW_multExpr_in_expr286);
+					pushFollow(FOLLOW_multExpr_in_expr409);
 					m2=multExpr();
 					state._fsp--;
 
 					 
-					        if ((tipo != m2) && (tipo != 3) && (m2 != 3)) {  
-					            System.err.println("Error: Operación con tipos incompatibles (" + 
-					                               (tipo == 1 ? "int" : "double") + " y " + 
-					                               (m2 == 1 ? "int" : "double") + ").");
-					            tipo = 3;  
-					        }
-					      
+					            if ((tipo != m2) && (tipo != 3) && (m2 != 3)) {  
+					                System.err.println("Error: Operación con tipos incompatibles (" + 
+					                                (tipo == 1 ? "int" : "double") + " y " + 
+					                                (m2 == 1 ? "int" : "double") + ").");
+					                tipo = 3;  
+					            }
+					        
 					}
 					break;
 
 				default :
-					break loop9;
+					break loop11;
 				}
 			}
 
@@ -683,7 +782,7 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "multExpr"
-	// semantica.g:108:1: multExpr returns [int tipo] : a1= atom (op= ( '*' | '/' ) a2= atom )* ;
+	// semantica.g:110:5: multExpr returns [int tipo] : a1= atom (op= ( '*' | '/' ) a2= atom )* ;
 	public final int multExpr() throws RecognitionException {
 		int tipo = 0;
 
@@ -693,31 +792,31 @@ public class semanticaParser extends Parser {
 		int a2 =0;
 
 		try {
-			// semantica.g:109:5: (a1= atom (op= ( '*' | '/' ) a2= atom )* )
-			// semantica.g:109:7: a1= atom (op= ( '*' | '/' ) a2= atom )*
+			// semantica.g:111:9: (a1= atom (op= ( '*' | '/' ) a2= atom )* )
+			// semantica.g:111:11: a1= atom (op= ( '*' | '/' ) a2= atom )*
 			{
-			pushFollow(FOLLOW_atom_in_multExpr310);
+			pushFollow(FOLLOW_atom_in_multExpr441);
 			a1=atom();
 			state._fsp--;
 
 			 
-			        tipo = a1; 
-			    
-			// semantica.g:112:7: (op= ( '*' | '/' ) a2= atom )*
-			loop10:
+			            tipo = a1; 
+			        
+			// semantica.g:114:9: (op= ( '*' | '/' ) a2= atom )*
+			loop12:
 			while (true) {
-				int alt10=2;
-				int LA10_0 = input.LA(1);
-				if ( (LA10_0==17||LA10_0==20) ) {
-					alt10=1;
+				int alt12=2;
+				int LA12_0 = input.LA(1);
+				if ( (LA12_0==18||LA12_0==21) ) {
+					alt12=1;
 				}
 
-				switch (alt10) {
+				switch (alt12) {
 				case 1 :
-					// semantica.g:112:8: op= ( '*' | '/' ) a2= atom
+					// semantica.g:114:10: op= ( '*' | '/' ) a2= atom
 					{
 					op=input.LT(1);
-					if ( input.LA(1)==17||input.LA(1)==20 ) {
+					if ( input.LA(1)==18||input.LA(1)==21 ) {
 						input.consume();
 						state.errorRecovery=false;
 					}
@@ -725,23 +824,23 @@ public class semanticaParser extends Parser {
 						MismatchedSetException mse = new MismatchedSetException(null,input);
 						throw mse;
 					}
-					pushFollow(FOLLOW_atom_in_multExpr335);
+					pushFollow(FOLLOW_atom_in_multExpr468);
 					a2=atom();
 					state._fsp--;
 
 					 
-					        if ((tipo != a2) && (tipo != 3) && (a2 != 3)) {  
-					            System.err.println("Error: Operación con tipos incompatibles (" + 
-					                               (tipo == 1 ? "int" : "double") + " y " + 
-					                               (a2 == 1 ? "int" : "double") + ").");
-					            tipo = 3;  
-					        }
-					      
+					            if ((tipo != a2) && (tipo != 3) && (a2 != 3)) {  
+					                System.err.println("Error: Operación con tipos incompatibles (" + 
+					                                (tipo == 1 ? "int" : "double") + " y " + 
+					                                (a2 == 1 ? "int" : "double") + ").");
+					                tipo = 3;  
+					            }
+					        
 					}
 					break;
 
 				default :
-					break loop10;
+					break loop12;
 				}
 			}
 
@@ -762,91 +861,90 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "atom"
-	// semantica.g:121:1: atom returns [int tipo] : ( ID | CINT | CDOUBLE | '(' expr ')' );
+	// semantica.g:123:5: atom returns [int tipo] : ( ID | CINT | CDOUBLE | '(' expr ')' );
 	public final int atom() throws RecognitionException {
 		int tipo = 0;
 
 
-		Token ID7=null;
-		int expr8 =0;
+		Token ID6=null;
+		int expr7 =0;
 
 		try {
-			// semantica.g:122:5: ( ID | CINT | CDOUBLE | '(' expr ')' )
-			int alt11=4;
+			// semantica.g:124:9: ( ID | CINT | CDOUBLE | '(' expr ')' )
+			int alt13=4;
 			switch ( input.LA(1) ) {
 			case ID:
 				{
-				alt11=1;
+				alt13=1;
 				}
 				break;
 			case CINT:
 				{
-				alt11=2;
+				alt13=2;
 				}
 				break;
 			case CDOUBLE:
 				{
-				alt11=3;
+				alt13=3;
 				}
 				break;
-			case 15:
+			case 16:
 				{
-				alt11=4;
+				alt13=4;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 11, 0, input);
+					new NoViableAltException("", 13, 0, input);
 				throw nvae;
 			}
-			switch (alt11) {
+			switch (alt13) {
 				case 1 :
-					// semantica.g:122:7: ID
+					// semantica.g:124:11: ID
 					{
-					ID7=(Token)match(input,ID,FOLLOW_ID_in_atom356); 
+					ID6=(Token)match(input,ID,FOLLOW_ID_in_atom497); 
 
-					        // Buscar en TSL (variables locales y argumentos)
-					        Integer tipoVar = (Integer) TSL.get((ID7!=null?ID7.getText():null));
-					        
-					        if (tipoVar == null) {  // Si no está en TSL, buscar en TSG
-					            tipoVar = (Integer) TSG.get((ID7!=null?ID7.getText():null));
+					            Integer tipoVar = (Integer) TSL.get((ID6!=null?ID6.getText():null));
 					            
-					            if (tipoVar == null) {  // No está en ninguna tabla → ERROR
-					                System.err.println("Error: Variable '" + (ID7!=null?ID7.getText():null) + "' no fue declarada.");
-					                tipo = 3;  // Devolver 3 como tipo de error
+					            if (tipoVar == null) {  
+					                tipoVar = (Integer) TSG.get((ID6!=null?ID6.getText():null));
+					                
+					                if (tipoVar == null) {  
+					                    System.err.println("Error: Variable '" + (ID6!=null?ID6.getText():null) + "' no fue declarada.");
+					                    tipo = 3; 
+					                } else {
+					                    tipo = tipoVar;  // Variable encontrada en TSG
+					                }
 					            } else {
-					                tipo = tipoVar;  // Variable encontrada en TSG
+					                tipo = tipoVar;  // Variable encontrada en TSL
 					            }
-					        } else {
-					            tipo = tipoVar;  // Variable encontrada en TSL
-					        }
-					    
+					        
 					}
 					break;
 				case 2 :
-					// semantica.g:139:7: CINT
+					// semantica.g:140:11: CINT
 					{
-					match(input,CINT,FOLLOW_CINT_in_atom366); 
+					match(input,CINT,FOLLOW_CINT_in_atom511); 
 					 tipo = 1; 
 					}
 					break;
 				case 3 :
-					// semantica.g:140:7: CDOUBLE
+					// semantica.g:141:11: CDOUBLE
 					{
-					match(input,CDOUBLE,FOLLOW_CDOUBLE_in_atom382); 
+					match(input,CDOUBLE,FOLLOW_CDOUBLE_in_atom531); 
 					 tipo = 2; 
 					}
 					break;
 				case 4 :
-					// semantica.g:141:7: '(' expr ')'
+					// semantica.g:142:11: '(' expr ')'
 					{
-					match(input,15,FOLLOW_15_in_atom395); 
-					pushFollow(FOLLOW_expr_in_atom397);
-					expr8=expr();
+					match(input,16,FOLLOW_16_in_atom548); 
+					pushFollow(FOLLOW_expr_in_atom550);
+					expr7=expr();
 					state._fsp--;
 
-					 tipo = expr8; 
-					match(input,16,FOLLOW_16_in_atom402); 
+					 tipo = expr7; 
+					match(input,17,FOLLOW_17_in_atom555); 
 					}
 					break;
 
@@ -866,10 +964,10 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "modificAcceso"
-	// semantica.g:145:1: modificAcceso : ( PUBLIC | PRIVATE | PROTECTED );
+	// semantica.g:146:5: modificAcceso : ( PUBLIC | PRIVATE | PROTECTED );
 	public final void modificAcceso() throws RecognitionException {
 		try {
-			// semantica.g:145:15: ( PUBLIC | PRIVATE | PROTECTED )
+			// semantica.g:146:19: ( PUBLIC | PRIVATE | PROTECTED )
 			// semantica.g:
 			{
 			if ( (input.LA(1) >= PRIVATE && input.LA(1) <= PUBLIC) ) {
@@ -899,16 +997,16 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "tipo"
-	// semantica.g:146:1: tipo : ( INT | DOUBLE );
+	// semantica.g:147:5: tipo : ( INT | DOUBLE | VOID );
 	public final semanticaParser.tipo_return tipo() throws RecognitionException {
 		semanticaParser.tipo_return retval = new semanticaParser.tipo_return();
 		retval.start = input.LT(1);
 
 		try {
-			// semantica.g:146:6: ( INT | DOUBLE )
+			// semantica.g:147:10: ( INT | DOUBLE | VOID )
 			// semantica.g:
 			{
-			if ( input.LA(1)==DOUBLE||input.LA(1)==INT ) {
+			if ( input.LA(1)==DOUBLE||input.LA(1)==INT||input.LA(1)==VOID ) {
 				input.consume();
 				state.errorRecovery=false;
 			}
@@ -936,53 +1034,56 @@ public class semanticaParser extends Parser {
 
 
 
-	public static final BitSet FOLLOW_clase_in_program22 = new BitSet(new long[]{0x0000000000001C02L});
-	public static final BitSet FOLLOW_modificAcceso_in_clase32 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_22_in_clase34 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_clase36 = new BitSet(new long[]{0x0000000000800000L});
-	public static final BitSet FOLLOW_23_in_clase40 = new BitSet(new long[]{0x0000000001001E80L});
-	public static final BitSet FOLLOW_miembro_in_clase46 = new BitSet(new long[]{0x0000000001001E80L});
-	public static final BitSet FOLLOW_24_in_clase49 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_metodo_in_miembro57 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_atributo_in_miembro61 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_modificAcceso_in_metodo70 = new BitSet(new long[]{0x0000000000000280L});
-	public static final BitSet FOLLOW_tipo_in_metodo72 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_metodo76 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_15_in_metodo78 = new BitSet(new long[]{0x0000000000010280L});
-	public static final BitSet FOLLOW_decl_args_in_metodo80 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_16_in_metodo83 = new BitSet(new long[]{0x0000000000800000L});
-	public static final BitSet FOLLOW_23_in_metodo105 = new BitSet(new long[]{0x0000000001000380L});
-	public static final BitSet FOLLOW_instruccion_in_metodo121 = new BitSet(new long[]{0x0000000001000380L});
-	public static final BitSet FOLLOW_24_in_metodo132 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_tipo_in_atributo143 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_atributo145 = new BitSet(new long[]{0x0000000000002000L});
-	public static final BitSet FOLLOW_SEMICOLON_in_atributo149 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_asignacion_in_instruccion157 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_decl_local_in_instruccion161 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_asignacion168 = new BitSet(new long[]{0x0000000000200000L});
-	public static final BitSet FOLLOW_21_in_asignacion170 = new BitSet(new long[]{0x0000000000008130L});
-	public static final BitSet FOLLOW_expr_in_asignacion172 = new BitSet(new long[]{0x0000000000002000L});
-	public static final BitSet FOLLOW_SEMICOLON_in_asignacion176 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_tipo_in_decl_args186 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_decl_args190 = new BitSet(new long[]{0x0000000000000042L});
-	public static final BitSet FOLLOW_COMMA_in_decl_args201 = new BitSet(new long[]{0x0000000000000280L});
-	public static final BitSet FOLLOW_tipo_in_decl_args205 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_decl_args209 = new BitSet(new long[]{0x0000000000000042L});
-	public static final BitSet FOLLOW_tipo_in_decl_local221 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_decl_local225 = new BitSet(new long[]{0x0000000000002040L});
-	public static final BitSet FOLLOW_COMMA_in_decl_local230 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_decl_local235 = new BitSet(new long[]{0x0000000000002040L});
-	public static final BitSet FOLLOW_SEMICOLON_in_decl_local241 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_multExpr_in_expr262 = new BitSet(new long[]{0x00000000000C0002L});
-	public static final BitSet FOLLOW_set_in_expr276 = new BitSet(new long[]{0x0000000000008130L});
-	public static final BitSet FOLLOW_multExpr_in_expr286 = new BitSet(new long[]{0x00000000000C0002L});
-	public static final BitSet FOLLOW_atom_in_multExpr310 = new BitSet(new long[]{0x0000000000120002L});
-	public static final BitSet FOLLOW_set_in_multExpr325 = new BitSet(new long[]{0x0000000000008130L});
-	public static final BitSet FOLLOW_atom_in_multExpr335 = new BitSet(new long[]{0x0000000000120002L});
-	public static final BitSet FOLLOW_ID_in_atom356 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CINT_in_atom366 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CDOUBLE_in_atom382 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_15_in_atom395 = new BitSet(new long[]{0x0000000000008130L});
-	public static final BitSet FOLLOW_expr_in_atom397 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_16_in_atom402 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_clase_in_program38 = new BitSet(new long[]{0x0000000000001C02L});
+	public static final BitSet FOLLOW_modificAcceso_in_clase52 = new BitSet(new long[]{0x0000000000800000L});
+	public static final BitSet FOLLOW_23_in_clase54 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_clase56 = new BitSet(new long[]{0x0000000001000000L});
+	public static final BitSet FOLLOW_24_in_clase60 = new BitSet(new long[]{0x0000000002005E80L});
+	public static final BitSet FOLLOW_miembro_in_clase70 = new BitSet(new long[]{0x0000000002005E80L});
+	public static final BitSet FOLLOW_25_in_clase77 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_metodo_in_miembro89 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_atributo_in_miembro93 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_modificAcceso_in_metodo106 = new BitSet(new long[]{0x0000000000004280L});
+	public static final BitSet FOLLOW_tipo_in_metodo108 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_metodo112 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_16_in_metodo114 = new BitSet(new long[]{0x0000000000024280L});
+	public static final BitSet FOLLOW_decl_args_in_metodo116 = new BitSet(new long[]{0x0000000000020000L});
+	public static final BitSet FOLLOW_17_in_metodo119 = new BitSet(new long[]{0x0000000001000000L});
+	public static final BitSet FOLLOW_24_in_metodo149 = new BitSet(new long[]{0x0000000002004380L});
+	public static final BitSet FOLLOW_instruccion_in_metodo169 = new BitSet(new long[]{0x0000000002004380L});
+	public static final BitSet FOLLOW_25_in_metodo184 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_modificAcceso_in_atributo195 = new BitSet(new long[]{0x0000000000004280L});
+	public static final BitSet FOLLOW_tipo_in_atributo198 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_atributo202 = new BitSet(new long[]{0x0000000000002040L});
+	public static final BitSet FOLLOW_COMMA_in_atributo219 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_atributo223 = new BitSet(new long[]{0x0000000000002040L});
+	public static final BitSet FOLLOW_SEMICOLON_in_atributo241 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_asignacion_in_instruccion253 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_decl_local_in_instruccion257 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_asignacion269 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_22_in_asignacion271 = new BitSet(new long[]{0x0000000000010130L});
+	public static final BitSet FOLLOW_expr_in_asignacion273 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_SEMICOLON_in_asignacion277 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_tipo_in_decl_args291 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_decl_args295 = new BitSet(new long[]{0x0000000000000042L});
+	public static final BitSet FOLLOW_COMMA_in_decl_args310 = new BitSet(new long[]{0x0000000000004280L});
+	public static final BitSet FOLLOW_tipo_in_decl_args314 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_decl_args318 = new BitSet(new long[]{0x0000000000000042L});
+	public static final BitSet FOLLOW_tipo_in_decl_local334 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_decl_local338 = new BitSet(new long[]{0x0000000000002040L});
+	public static final BitSet FOLLOW_COMMA_in_decl_local343 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_decl_local348 = new BitSet(new long[]{0x0000000000002040L});
+	public static final BitSet FOLLOW_SEMICOLON_in_decl_local354 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_multExpr_in_expr383 = new BitSet(new long[]{0x0000000000180002L});
+	public static final BitSet FOLLOW_set_in_expr399 = new BitSet(new long[]{0x0000000000010130L});
+	public static final BitSet FOLLOW_multExpr_in_expr409 = new BitSet(new long[]{0x0000000000180002L});
+	public static final BitSet FOLLOW_atom_in_multExpr441 = new BitSet(new long[]{0x0000000000240002L});
+	public static final BitSet FOLLOW_set_in_multExpr458 = new BitSet(new long[]{0x0000000000010130L});
+	public static final BitSet FOLLOW_atom_in_multExpr468 = new BitSet(new long[]{0x0000000000240002L});
+	public static final BitSet FOLLOW_ID_in_atom497 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CINT_in_atom511 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CDOUBLE_in_atom531 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_16_in_atom548 = new BitSet(new long[]{0x0000000000010130L});
+	public static final BitSet FOLLOW_expr_in_atom550 = new BitSet(new long[]{0x0000000000020000L});
+	public static final BitSet FOLLOW_17_in_atom555 = new BitSet(new long[]{0x0000000000000002L});
 }

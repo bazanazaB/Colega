@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 semantica.g 2025-03-08 13:18:45
+// $ANTLR 3.5.2 semantica.g 2025-03-09 09:37:11
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class semanticaLexer extends Lexer {
 	public static final int EOF=-1;
-	public static final int T__15=15;
 	public static final int T__16=16;
 	public static final int T__17=17;
 	public static final int T__18=18;
@@ -18,6 +17,7 @@ public class semanticaLexer extends Lexer {
 	public static final int T__22=22;
 	public static final int T__23=23;
 	public static final int T__24=24;
+	public static final int T__25=25;
 	public static final int CDOUBLE=4;
 	public static final int CINT=5;
 	public static final int COMMA=6;
@@ -28,7 +28,8 @@ public class semanticaLexer extends Lexer {
 	public static final int PROTECTED=11;
 	public static final int PUBLIC=12;
 	public static final int SEMICOLON=13;
-	public static final int WS=14;
+	public static final int VOID=14;
+	public static final int WS=15;
 
 	// delegates
 	// delegators
@@ -45,35 +46,15 @@ public class semanticaLexer extends Lexer {
 	}
 	@Override public String getGrammarFileName() { return "semantica.g"; }
 
-	// $ANTLR start "T__15"
-	public final void mT__15() throws RecognitionException {
-		try {
-			int _type = T__15;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:2:7: ( '(' )
-			// semantica.g:2:9: '('
-			{
-			match('('); 
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "T__15"
-
 	// $ANTLR start "T__16"
 	public final void mT__16() throws RecognitionException {
 		try {
 			int _type = T__16;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:3:7: ( ')' )
-			// semantica.g:3:9: ')'
+			// semantica.g:2:7: ( '(' )
+			// semantica.g:2:9: '('
 			{
-			match(')'); 
+			match('('); 
 			}
 
 			state.type = _type;
@@ -90,10 +71,10 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = T__17;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:4:7: ( '*' )
-			// semantica.g:4:9: '*'
+			// semantica.g:3:7: ( ')' )
+			// semantica.g:3:9: ')'
 			{
-			match('*'); 
+			match(')'); 
 			}
 
 			state.type = _type;
@@ -110,10 +91,10 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = T__18;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:5:7: ( '+' )
-			// semantica.g:5:9: '+'
+			// semantica.g:4:7: ( '*' )
+			// semantica.g:4:9: '*'
 			{
-			match('+'); 
+			match('*'); 
 			}
 
 			state.type = _type;
@@ -130,10 +111,10 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = T__19;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:6:7: ( '-' )
-			// semantica.g:6:9: '-'
+			// semantica.g:5:7: ( '+' )
+			// semantica.g:5:9: '+'
 			{
-			match('-'); 
+			match('+'); 
 			}
 
 			state.type = _type;
@@ -150,10 +131,10 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = T__20;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:7:7: ( '/' )
-			// semantica.g:7:9: '/'
+			// semantica.g:6:7: ( '-' )
+			// semantica.g:6:9: '-'
 			{
-			match('/'); 
+			match('-'); 
 			}
 
 			state.type = _type;
@@ -170,10 +151,10 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = T__21;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:8:7: ( '=' )
-			// semantica.g:8:9: '='
+			// semantica.g:7:7: ( '/' )
+			// semantica.g:7:9: '/'
 			{
-			match('='); 
+			match('/'); 
 			}
 
 			state.type = _type;
@@ -190,11 +171,10 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = T__22;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:9:7: ( 'class' )
-			// semantica.g:9:9: 'class'
+			// semantica.g:8:7: ( '=' )
+			// semantica.g:8:9: '='
 			{
-			match("class"); 
-
+			match('='); 
 			}
 
 			state.type = _type;
@@ -211,10 +191,11 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = T__23;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:10:7: ( '{' )
-			// semantica.g:10:9: '{'
+			// semantica.g:9:7: ( 'class' )
+			// semantica.g:9:9: 'class'
 			{
-			match('{'); 
+			match("class"); 
+
 			}
 
 			state.type = _type;
@@ -231,6 +212,26 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = T__24;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// semantica.g:10:7: ( '{' )
+			// semantica.g:10:9: '{'
+			{
+			match('{'); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__24"
+
+	// $ANTLR start "T__25"
+	public final void mT__25() throws RecognitionException {
+		try {
+			int _type = T__25;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
 			// semantica.g:11:7: ( '}' )
 			// semantica.g:11:9: '}'
 			{
@@ -244,15 +245,15 @@ public class semanticaLexer extends Lexer {
 			// do for sure before leaving
 		}
 	}
-	// $ANTLR end "T__24"
+	// $ANTLR end "T__25"
 
 	// $ANTLR start "INT"
 	public final void mINT() throws RecognitionException {
 		try {
 			int _type = INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:148:5: ( 'int' )
-			// semantica.g:148:7: 'int'
+			// semantica.g:149:5: ( 'int' )
+			// semantica.g:149:7: 'int'
 			{
 			match("int"); 
 
@@ -272,8 +273,8 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = DOUBLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:149:8: ( 'double' )
-			// semantica.g:149:10: 'double'
+			// semantica.g:150:8: ( 'double' )
+			// semantica.g:150:10: 'double'
 			{
 			match("double"); 
 
@@ -293,8 +294,8 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = PUBLIC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:150:8: ( 'public' )
-			// semantica.g:150:10: 'public'
+			// semantica.g:151:8: ( 'public' )
+			// semantica.g:151:10: 'public'
 			{
 			match("public"); 
 
@@ -314,8 +315,8 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = PRIVATE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:151:9: ( 'private' )
-			// semantica.g:151:11: 'private'
+			// semantica.g:152:9: ( 'private' )
+			// semantica.g:152:11: 'private'
 			{
 			match("private"); 
 
@@ -335,8 +336,8 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = PROTECTED;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:152:11: ( 'protected' )
-			// semantica.g:152:13: 'protected'
+			// semantica.g:153:11: ( 'protected' )
+			// semantica.g:153:13: 'protected'
 			{
 			match("protected"); 
 
@@ -356,8 +357,8 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = SEMICOLON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:153:11: ( ';' )
-			// semantica.g:153:13: ';'
+			// semantica.g:154:11: ( ';' )
+			// semantica.g:154:13: ';'
 			{
 			match(';'); 
 			}
@@ -376,8 +377,8 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = COMMA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:154:7: ( ',' )
-			// semantica.g:154:9: ','
+			// semantica.g:155:7: ( ',' )
+			// semantica.g:155:9: ','
 			{
 			match(','); 
 			}
@@ -391,21 +392,49 @@ public class semanticaLexer extends Lexer {
 	}
 	// $ANTLR end "COMMA"
 
+	// $ANTLR start "VOID"
+	public final void mVOID() throws RecognitionException {
+		try {
+			int _type = VOID;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// semantica.g:156:6: ( 'void' )
+			// semantica.g:156:8: 'void'
+			{
+			match("void"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "VOID"
+
 	// $ANTLR start "ID"
 	public final void mID() throws RecognitionException {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:156:4: ( ( 'a' .. 'z' | 'A' .. 'Z' )+ )
-			// semantica.g:156:6: ( 'a' .. 'z' | 'A' .. 'Z' )+
+			// semantica.g:158:4: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
+			// semantica.g:158:6: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
 			{
-			// semantica.g:156:6: ( 'a' .. 'z' | 'A' .. 'Z' )+
-			int cnt1=0;
+			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
+				input.consume();
+			}
+			else {
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				recover(mse);
+				throw mse;
+			}
+			// semantica.g:158:28: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
 			loop1:
 			while (true) {
 				int alt1=2;
 				int LA1_0 = input.LA(1);
-				if ( ((LA1_0 >= 'A' && LA1_0 <= 'Z')||(LA1_0 >= 'a' && LA1_0 <= 'z')) ) {
+				if ( ((LA1_0 >= '0' && LA1_0 <= '9')||(LA1_0 >= 'A' && LA1_0 <= 'Z')||(LA1_0 >= 'a' && LA1_0 <= 'z')) ) {
 					alt1=1;
 				}
 
@@ -413,7 +442,7 @@ public class semanticaLexer extends Lexer {
 				case 1 :
 					// semantica.g:
 					{
-					if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
+					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
 					}
 					else {
@@ -425,11 +454,8 @@ public class semanticaLexer extends Lexer {
 					break;
 
 				default :
-					if ( cnt1 >= 1 ) break loop1;
-					EarlyExitException eee = new EarlyExitException(1, input);
-					throw eee;
+					break loop1;
 				}
-				cnt1++;
 			}
 
 			}
@@ -448,8 +474,8 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = CDOUBLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:157:9: ( ( '0' .. '9' ) '.' ( '0' .. '9' )+ )
-			// semantica.g:157:11: ( '0' .. '9' ) '.' ( '0' .. '9' )+
+			// semantica.g:159:9: ( ( '0' .. '9' ) '.' ( '0' .. '9' )+ )
+			// semantica.g:159:11: ( '0' .. '9' ) '.' ( '0' .. '9' )+
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 				input.consume();
@@ -460,7 +486,7 @@ public class semanticaLexer extends Lexer {
 				throw mse;
 			}
 			match('.'); 
-			// semantica.g:157:26: ( '0' .. '9' )+
+			// semantica.g:159:26: ( '0' .. '9' )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -509,10 +535,10 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = CINT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:158:6: ( ( '0' .. '9' )+ )
-			// semantica.g:158:8: ( '0' .. '9' )+
+			// semantica.g:160:6: ( ( '0' .. '9' )+ )
+			// semantica.g:160:8: ( '0' .. '9' )+
 			{
-			// semantica.g:158:8: ( '0' .. '9' )+
+			// semantica.g:160:8: ( '0' .. '9' )+
 			int cnt3=0;
 			loop3:
 			while (true) {
@@ -561,10 +587,10 @@ public class semanticaLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// semantica.g:160:4: ( ( ' ' | '\\n' | '\\t' | '\\r' )+ )
-			// semantica.g:160:6: ( ' ' | '\\n' | '\\t' | '\\r' )+
+			// semantica.g:162:4: ( ( ' ' | '\\n' | '\\t' | '\\r' )+ )
+			// semantica.g:162:6: ( ' ' | '\\n' | '\\t' | '\\r' )+
 			{
-			// semantica.g:160:6: ( ' ' | '\\n' | '\\t' | '\\r' )+
+			// semantica.g:162:6: ( ' ' | '\\n' | '\\t' | '\\r' )+
 			int cnt4=0;
 			loop4:
 			while (true) {
@@ -611,513 +637,77 @@ public class semanticaLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// semantica.g:1:8: ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | INT | DOUBLE | PUBLIC | PRIVATE | PROTECTED | SEMICOLON | COMMA | ID | CDOUBLE | CINT | WS )
-		int alt5=21;
-		switch ( input.LA(1) ) {
-		case '(':
-			{
-			alt5=1;
-			}
-			break;
-		case ')':
-			{
-			alt5=2;
-			}
-			break;
-		case '*':
-			{
-			alt5=3;
-			}
-			break;
-		case '+':
-			{
-			alt5=4;
-			}
-			break;
-		case '-':
-			{
-			alt5=5;
-			}
-			break;
-		case '/':
-			{
-			alt5=6;
-			}
-			break;
-		case '=':
-			{
-			alt5=7;
-			}
-			break;
-		case 'c':
-			{
-			int LA5_8 = input.LA(2);
-			if ( (LA5_8=='l') ) {
-				int LA5_19 = input.LA(3);
-				if ( (LA5_19=='a') ) {
-					int LA5_26 = input.LA(4);
-					if ( (LA5_26=='s') ) {
-						int LA5_32 = input.LA(5);
-						if ( (LA5_32=='s') ) {
-							int LA5_38 = input.LA(6);
-							if ( ((LA5_38 >= 'A' && LA5_38 <= 'Z')||(LA5_38 >= 'a' && LA5_38 <= 'z')) ) {
-								alt5=18;
-							}
-
-							else {
-								alt5=8;
-							}
-
-						}
-
-						else {
-							alt5=18;
-						}
-
-					}
-
-					else {
-						alt5=18;
-					}
-
-				}
-
-				else {
-					alt5=18;
-				}
-
-			}
-
-			else {
-				alt5=18;
-			}
-
-			}
-			break;
-		case '{':
-			{
-			alt5=9;
-			}
-			break;
-		case '}':
-			{
-			alt5=10;
-			}
-			break;
-		case 'i':
-			{
-			int LA5_11 = input.LA(2);
-			if ( (LA5_11=='n') ) {
-				int LA5_20 = input.LA(3);
-				if ( (LA5_20=='t') ) {
-					int LA5_27 = input.LA(4);
-					if ( ((LA5_27 >= 'A' && LA5_27 <= 'Z')||(LA5_27 >= 'a' && LA5_27 <= 'z')) ) {
-						alt5=18;
-					}
-
-					else {
-						alt5=11;
-					}
-
-				}
-
-				else {
-					alt5=18;
-				}
-
-			}
-
-			else {
-				alt5=18;
-			}
-
-			}
-			break;
-		case 'd':
-			{
-			int LA5_12 = input.LA(2);
-			if ( (LA5_12=='o') ) {
-				int LA5_21 = input.LA(3);
-				if ( (LA5_21=='u') ) {
-					int LA5_28 = input.LA(4);
-					if ( (LA5_28=='b') ) {
-						int LA5_34 = input.LA(5);
-						if ( (LA5_34=='l') ) {
-							int LA5_39 = input.LA(6);
-							if ( (LA5_39=='e') ) {
-								int LA5_44 = input.LA(7);
-								if ( ((LA5_44 >= 'A' && LA5_44 <= 'Z')||(LA5_44 >= 'a' && LA5_44 <= 'z')) ) {
-									alt5=18;
-								}
-
-								else {
-									alt5=12;
-								}
-
-							}
-
-							else {
-								alt5=18;
-							}
-
-						}
-
-						else {
-							alt5=18;
-						}
-
-					}
-
-					else {
-						alt5=18;
-					}
-
-				}
-
-				else {
-					alt5=18;
-				}
-
-			}
-
-			else {
-				alt5=18;
-			}
-
-			}
-			break;
-		case 'p':
-			{
-			switch ( input.LA(2) ) {
-			case 'u':
-				{
-				int LA5_22 = input.LA(3);
-				if ( (LA5_22=='b') ) {
-					int LA5_29 = input.LA(4);
-					if ( (LA5_29=='l') ) {
-						int LA5_35 = input.LA(5);
-						if ( (LA5_35=='i') ) {
-							int LA5_40 = input.LA(6);
-							if ( (LA5_40=='c') ) {
-								int LA5_45 = input.LA(7);
-								if ( ((LA5_45 >= 'A' && LA5_45 <= 'Z')||(LA5_45 >= 'a' && LA5_45 <= 'z')) ) {
-									alt5=18;
-								}
-
-								else {
-									alt5=13;
-								}
-
-							}
-
-							else {
-								alt5=18;
-							}
-
-						}
-
-						else {
-							alt5=18;
-						}
-
-					}
-
-					else {
-						alt5=18;
-					}
-
-				}
-
-				else {
-					alt5=18;
-				}
-
-				}
-				break;
-			case 'r':
-				{
-				switch ( input.LA(3) ) {
-				case 'i':
-					{
-					int LA5_30 = input.LA(4);
-					if ( (LA5_30=='v') ) {
-						int LA5_36 = input.LA(5);
-						if ( (LA5_36=='a') ) {
-							int LA5_41 = input.LA(6);
-							if ( (LA5_41=='t') ) {
-								int LA5_46 = input.LA(7);
-								if ( (LA5_46=='e') ) {
-									int LA5_50 = input.LA(8);
-									if ( ((LA5_50 >= 'A' && LA5_50 <= 'Z')||(LA5_50 >= 'a' && LA5_50 <= 'z')) ) {
-										alt5=18;
-									}
-
-									else {
-										alt5=14;
-									}
-
-								}
-
-								else {
-									alt5=18;
-								}
-
-							}
-
-							else {
-								alt5=18;
-							}
-
-						}
-
-						else {
-							alt5=18;
-						}
-
-					}
-
-					else {
-						alt5=18;
-					}
-
-					}
-					break;
-				case 'o':
-					{
-					int LA5_31 = input.LA(4);
-					if ( (LA5_31=='t') ) {
-						int LA5_37 = input.LA(5);
-						if ( (LA5_37=='e') ) {
-							int LA5_42 = input.LA(6);
-							if ( (LA5_42=='c') ) {
-								int LA5_47 = input.LA(7);
-								if ( (LA5_47=='t') ) {
-									int LA5_51 = input.LA(8);
-									if ( (LA5_51=='e') ) {
-										int LA5_53 = input.LA(9);
-										if ( (LA5_53=='d') ) {
-											int LA5_54 = input.LA(10);
-											if ( ((LA5_54 >= 'A' && LA5_54 <= 'Z')||(LA5_54 >= 'a' && LA5_54 <= 'z')) ) {
-												alt5=18;
-											}
-
-											else {
-												alt5=15;
-											}
-
-										}
-
-										else {
-											alt5=18;
-										}
-
-									}
-
-									else {
-										alt5=18;
-									}
-
-								}
-
-								else {
-									alt5=18;
-								}
-
-							}
-
-							else {
-								alt5=18;
-							}
-
-						}
-
-						else {
-							alt5=18;
-						}
-
-					}
-
-					else {
-						alt5=18;
-					}
-
-					}
-					break;
-				default:
-					alt5=18;
-				}
-				}
-				break;
-			default:
-				alt5=18;
-			}
-			}
-			break;
-		case ';':
-			{
-			alt5=16;
-			}
-			break;
-		case ',':
-			{
-			alt5=17;
-			}
-			break;
-		case 'A':
-		case 'B':
-		case 'C':
-		case 'D':
-		case 'E':
-		case 'F':
-		case 'G':
-		case 'H':
-		case 'I':
-		case 'J':
-		case 'K':
-		case 'L':
-		case 'M':
-		case 'N':
-		case 'O':
-		case 'P':
-		case 'Q':
-		case 'R':
-		case 'S':
-		case 'T':
-		case 'U':
-		case 'V':
-		case 'W':
-		case 'X':
-		case 'Y':
-		case 'Z':
-		case 'a':
-		case 'b':
-		case 'e':
-		case 'f':
-		case 'g':
-		case 'h':
-		case 'j':
-		case 'k':
-		case 'l':
-		case 'm':
-		case 'n':
-		case 'o':
-		case 'q':
-		case 'r':
-		case 's':
-		case 't':
-		case 'u':
-		case 'v':
-		case 'w':
-		case 'x':
-		case 'y':
-		case 'z':
-			{
-			alt5=18;
-			}
-			break;
-		case '0':
-		case '1':
-		case '2':
-		case '3':
-		case '4':
-		case '5':
-		case '6':
-		case '7':
-		case '8':
-		case '9':
-			{
-			int LA5_17 = input.LA(2);
-			if ( (LA5_17=='.') ) {
-				alt5=19;
-			}
-
-			else {
-				alt5=20;
-			}
-
-			}
-			break;
-		case '\t':
-		case '\n':
-		case '\r':
-		case ' ':
-			{
-			alt5=21;
-			}
-			break;
-		default:
-			NoViableAltException nvae =
-				new NoViableAltException("", 5, 0, input);
-			throw nvae;
-		}
+		// semantica.g:1:8: ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | INT | DOUBLE | PUBLIC | PRIVATE | PROTECTED | SEMICOLON | COMMA | VOID | ID | CDOUBLE | CINT | WS )
+		int alt5=22;
+		alt5 = dfa5.predict(input);
 		switch (alt5) {
 			case 1 :
-				// semantica.g:1:10: T__15
-				{
-				mT__15(); 
-
-				}
-				break;
-			case 2 :
-				// semantica.g:1:16: T__16
+				// semantica.g:1:10: T__16
 				{
 				mT__16(); 
 
 				}
 				break;
-			case 3 :
-				// semantica.g:1:22: T__17
+			case 2 :
+				// semantica.g:1:16: T__17
 				{
 				mT__17(); 
 
 				}
 				break;
-			case 4 :
-				// semantica.g:1:28: T__18
+			case 3 :
+				// semantica.g:1:22: T__18
 				{
 				mT__18(); 
 
 				}
 				break;
-			case 5 :
-				// semantica.g:1:34: T__19
+			case 4 :
+				// semantica.g:1:28: T__19
 				{
 				mT__19(); 
 
 				}
 				break;
-			case 6 :
-				// semantica.g:1:40: T__20
+			case 5 :
+				// semantica.g:1:34: T__20
 				{
 				mT__20(); 
 
 				}
 				break;
-			case 7 :
-				// semantica.g:1:46: T__21
+			case 6 :
+				// semantica.g:1:40: T__21
 				{
 				mT__21(); 
 
 				}
 				break;
-			case 8 :
-				// semantica.g:1:52: T__22
+			case 7 :
+				// semantica.g:1:46: T__22
 				{
 				mT__22(); 
 
 				}
 				break;
-			case 9 :
-				// semantica.g:1:58: T__23
+			case 8 :
+				// semantica.g:1:52: T__23
 				{
 				mT__23(); 
 
 				}
 				break;
-			case 10 :
-				// semantica.g:1:64: T__24
+			case 9 :
+				// semantica.g:1:58: T__24
 				{
 				mT__24(); 
+
+				}
+				break;
+			case 10 :
+				// semantica.g:1:64: T__25
+				{
+				mT__25(); 
 
 				}
 				break;
@@ -1171,28 +761,35 @@ public class semanticaLexer extends Lexer {
 				}
 				break;
 			case 18 :
-				// semantica.g:1:122: ID
+				// semantica.g:1:122: VOID
+				{
+				mVOID(); 
+
+				}
+				break;
+			case 19 :
+				// semantica.g:1:127: ID
 				{
 				mID(); 
 
 				}
 				break;
-			case 19 :
-				// semantica.g:1:125: CDOUBLE
+			case 20 :
+				// semantica.g:1:130: CDOUBLE
 				{
 				mCDOUBLE(); 
 
 				}
 				break;
-			case 20 :
-				// semantica.g:1:133: CINT
+			case 21 :
+				// semantica.g:1:138: CINT
 				{
 				mCINT(); 
 
 				}
 				break;
-			case 21 :
-				// semantica.g:1:138: WS
+			case 22 :
+				// semantica.g:1:143: WS
 				{
 				mWS(); 
 
@@ -1203,5 +800,130 @@ public class semanticaLexer extends Lexer {
 	}
 
 
+	protected DFA5 dfa5 = new DFA5(this);
+	static final String DFA5_eotS =
+		"\10\uffff\1\21\2\uffff\3\21\2\uffff\1\21\1\uffff\1\33\1\uffff\6\21\2\uffff"+
+		"\1\21\1\44\6\21\1\uffff\4\21\1\57\1\60\4\21\2\uffff\1\65\1\66\2\21\2\uffff"+
+		"\1\71\1\21\1\uffff\1\21\1\74\1\uffff";
+	static final String DFA5_eofS =
+		"\75\uffff";
+	static final String DFA5_minS =
+		"\1\11\7\uffff\1\154\2\uffff\1\156\1\157\1\162\2\uffff\1\157\1\uffff\1"+
+		"\56\1\uffff\1\141\1\164\1\165\1\142\2\151\2\uffff\1\163\1\60\1\142\1\154"+
+		"\1\166\1\164\1\144\1\163\1\uffff\1\154\1\151\1\141\1\145\2\60\1\145\1"+
+		"\143\1\164\1\143\2\uffff\2\60\1\145\1\164\2\uffff\1\60\1\145\1\uffff\1"+
+		"\144\1\60\1\uffff";
+	static final String DFA5_maxS =
+		"\1\175\7\uffff\1\154\2\uffff\1\156\1\157\1\165\2\uffff\1\157\1\uffff\1"+
+		"\56\1\uffff\1\141\1\164\1\165\1\142\1\157\1\151\2\uffff\1\163\1\172\1"+
+		"\142\1\154\1\166\1\164\1\144\1\163\1\uffff\1\154\1\151\1\141\1\145\2\172"+
+		"\1\145\1\143\1\164\1\143\2\uffff\2\172\1\145\1\164\2\uffff\1\172\1\145"+
+		"\1\uffff\1\144\1\172\1\uffff";
+	static final String DFA5_acceptS =
+		"\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\uffff\1\11\1\12\3\uffff\1\20\1"+
+		"\21\1\uffff\1\23\1\uffff\1\26\6\uffff\1\24\1\25\10\uffff\1\13\12\uffff"+
+		"\1\22\1\10\4\uffff\1\14\1\15\2\uffff\1\16\2\uffff\1\17";
+	static final String DFA5_specialS =
+		"\75\uffff}>";
+	static final String[] DFA5_transitionS = {
+			"\2\23\2\uffff\1\23\22\uffff\1\23\7\uffff\1\1\1\2\1\3\1\4\1\17\1\5\1\uffff"+
+			"\1\6\12\22\1\uffff\1\16\1\uffff\1\7\3\uffff\32\21\6\uffff\2\21\1\10\1"+
+			"\14\4\21\1\13\6\21\1\15\5\21\1\20\4\21\1\11\1\uffff\1\12",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"\1\24",
+			"",
+			"",
+			"\1\25",
+			"\1\26",
+			"\1\30\2\uffff\1\27",
+			"",
+			"",
+			"\1\31",
+			"",
+			"\1\32",
+			"",
+			"\1\34",
+			"\1\35",
+			"\1\36",
+			"\1\37",
+			"\1\40\5\uffff\1\41",
+			"\1\42",
+			"",
+			"",
+			"\1\43",
+			"\12\21\7\uffff\32\21\6\uffff\32\21",
+			"\1\45",
+			"\1\46",
+			"\1\47",
+			"\1\50",
+			"\1\51",
+			"\1\52",
+			"",
+			"\1\53",
+			"\1\54",
+			"\1\55",
+			"\1\56",
+			"\12\21\7\uffff\32\21\6\uffff\32\21",
+			"\12\21\7\uffff\32\21\6\uffff\32\21",
+			"\1\61",
+			"\1\62",
+			"\1\63",
+			"\1\64",
+			"",
+			"",
+			"\12\21\7\uffff\32\21\6\uffff\32\21",
+			"\12\21\7\uffff\32\21\6\uffff\32\21",
+			"\1\67",
+			"\1\70",
+			"",
+			"",
+			"\12\21\7\uffff\32\21\6\uffff\32\21",
+			"\1\72",
+			"",
+			"\1\73",
+			"\12\21\7\uffff\32\21\6\uffff\32\21",
+			""
+	};
+
+	static final short[] DFA5_eot = DFA.unpackEncodedString(DFA5_eotS);
+	static final short[] DFA5_eof = DFA.unpackEncodedString(DFA5_eofS);
+	static final char[] DFA5_min = DFA.unpackEncodedStringToUnsignedChars(DFA5_minS);
+	static final char[] DFA5_max = DFA.unpackEncodedStringToUnsignedChars(DFA5_maxS);
+	static final short[] DFA5_accept = DFA.unpackEncodedString(DFA5_acceptS);
+	static final short[] DFA5_special = DFA.unpackEncodedString(DFA5_specialS);
+	static final short[][] DFA5_transition;
+
+	static {
+		int numStates = DFA5_transitionS.length;
+		DFA5_transition = new short[numStates][];
+		for (int i=0; i<numStates; i++) {
+			DFA5_transition[i] = DFA.unpackEncodedString(DFA5_transitionS[i]);
+		}
+	}
+
+	protected class DFA5 extends DFA {
+
+		public DFA5(BaseRecognizer recognizer) {
+			this.recognizer = recognizer;
+			this.decisionNumber = 5;
+			this.eot = DFA5_eot;
+			this.eof = DFA5_eof;
+			this.min = DFA5_min;
+			this.max = DFA5_max;
+			this.accept = DFA5_accept;
+			this.special = DFA5_special;
+			this.transition = DFA5_transition;
+		}
+		@Override
+		public String getDescription() {
+			return "1:1: Tokens : ( T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | INT | DOUBLE | PUBLIC | PRIVATE | PROTECTED | SEMICOLON | COMMA | VOID | ID | CDOUBLE | CINT | WS );";
+		}
+	}
 
 }
