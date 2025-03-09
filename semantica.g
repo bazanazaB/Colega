@@ -56,7 +56,7 @@
 
     miembro : metodo | atributo; 
 
-    metodo : modificAcceso tipo id1=ID '(' decl_args? ')'
+    metodo : modificAcceso? tipo id1=ID '(' decl_args? ')'
             { 
                 pushTSG($id1.text,"metodo"); 
             }  

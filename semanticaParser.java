@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 semantica.g 2025-03-09 09:37:10
+// $ANTLR 3.5.2 semantica.g 2025-03-09 09:41:26
 
         import java.util.HashMap;
     
@@ -221,13 +221,13 @@ public class semanticaParser extends Parser {
 			if ( ((LA3_0 >= PRIVATE && LA3_0 <= PUBLIC)) ) {
 				int LA3_1 = input.LA(2);
 				if ( (LA3_1==DOUBLE||LA3_1==INT||LA3_1==VOID) ) {
-					int LA3_3 = input.LA(3);
-					if ( (LA3_3==ID) ) {
-						int LA3_4 = input.LA(4);
-						if ( (LA3_4==16) ) {
+					int LA3_2 = input.LA(3);
+					if ( (LA3_2==ID) ) {
+						int LA3_3 = input.LA(4);
+						if ( (LA3_3==16) ) {
 							alt3=1;
 						}
-						else if ( (LA3_4==COMMA||LA3_4==SEMICOLON) ) {
+						else if ( (LA3_3==COMMA||LA3_3==SEMICOLON) ) {
 							alt3=2;
 						}
 
@@ -238,13 +238,53 @@ public class semanticaParser extends Parser {
 									input.consume();
 								}
 								NoViableAltException nvae =
-									new NoViableAltException("", 3, 4, input);
+									new NoViableAltException("", 3, 3, input);
 								throw nvae;
 							} finally {
 								input.rewind(nvaeMark);
 							}
 						}
 
+					}
+
+					else {
+						int nvaeMark = input.mark();
+						try {
+							for (int nvaeConsume = 0; nvaeConsume < 3 - 1; nvaeConsume++) {
+								input.consume();
+							}
+							NoViableAltException nvae =
+								new NoViableAltException("", 3, 2, input);
+							throw nvae;
+						} finally {
+							input.rewind(nvaeMark);
+						}
+					}
+
+				}
+
+				else {
+					int nvaeMark = input.mark();
+					try {
+						input.consume();
+						NoViableAltException nvae =
+							new NoViableAltException("", 3, 1, input);
+						throw nvae;
+					} finally {
+						input.rewind(nvaeMark);
+					}
+				}
+
+			}
+			else if ( (LA3_0==DOUBLE||LA3_0==INT||LA3_0==VOID) ) {
+				int LA3_2 = input.LA(2);
+				if ( (LA3_2==ID) ) {
+					int LA3_3 = input.LA(3);
+					if ( (LA3_3==16) ) {
+						alt3=1;
+					}
+					else if ( (LA3_3==COMMA||LA3_3==SEMICOLON) ) {
+						alt3=2;
 					}
 
 					else {
@@ -268,16 +308,13 @@ public class semanticaParser extends Parser {
 					try {
 						input.consume();
 						NoViableAltException nvae =
-							new NoViableAltException("", 3, 1, input);
+							new NoViableAltException("", 3, 2, input);
 						throw nvae;
 					} finally {
 						input.rewind(nvaeMark);
 					}
 				}
 
-			}
-			else if ( (LA3_0==DOUBLE||LA3_0==INT||LA3_0==VOID) ) {
-				alt3=2;
 			}
 
 			else {
@@ -321,35 +358,50 @@ public class semanticaParser extends Parser {
 
 
 	// $ANTLR start "metodo"
-	// semantica.g:59:5: metodo : modificAcceso tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}' ;
+	// semantica.g:59:5: metodo : ( modificAcceso )? tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}' ;
 	public final void metodo() throws RecognitionException {
 		Token id1=null;
 
 		try {
-			// semantica.g:59:12: ( modificAcceso tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}' )
-			// semantica.g:59:14: modificAcceso tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}'
+			// semantica.g:59:12: ( ( modificAcceso )? tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}' )
+			// semantica.g:59:14: ( modificAcceso )? tipo id1= ID '(' ( decl_args )? ')' '{' ( instruccion )* '}'
 			{
-			pushFollow(FOLLOW_modificAcceso_in_metodo106);
-			modificAcceso();
-			state._fsp--;
-
-			pushFollow(FOLLOW_tipo_in_metodo108);
-			tipo();
-			state._fsp--;
-
-			id1=(Token)match(input,ID,FOLLOW_ID_in_metodo112); 
-			match(input,16,FOLLOW_16_in_metodo114); 
-			// semantica.g:59:44: ( decl_args )?
+			// semantica.g:59:14: ( modificAcceso )?
 			int alt4=2;
 			int LA4_0 = input.LA(1);
-			if ( (LA4_0==DOUBLE||LA4_0==INT||LA4_0==VOID) ) {
+			if ( ((LA4_0 >= PRIVATE && LA4_0 <= PUBLIC)) ) {
 				alt4=1;
 			}
 			switch (alt4) {
 				case 1 :
-					// semantica.g:59:44: decl_args
+					// semantica.g:59:14: modificAcceso
 					{
-					pushFollow(FOLLOW_decl_args_in_metodo116);
+					pushFollow(FOLLOW_modificAcceso_in_metodo106);
+					modificAcceso();
+					state._fsp--;
+
+					}
+					break;
+
+			}
+
+			pushFollow(FOLLOW_tipo_in_metodo109);
+			tipo();
+			state._fsp--;
+
+			id1=(Token)match(input,ID,FOLLOW_ID_in_metodo113); 
+			match(input,16,FOLLOW_16_in_metodo115); 
+			// semantica.g:59:45: ( decl_args )?
+			int alt5=2;
+			int LA5_0 = input.LA(1);
+			if ( (LA5_0==DOUBLE||LA5_0==INT||LA5_0==VOID) ) {
+				alt5=1;
+			}
+			switch (alt5) {
+				case 1 :
+					// semantica.g:59:45: decl_args
+					{
+					pushFollow(FOLLOW_decl_args_in_metodo117);
 					decl_args();
 					state._fsp--;
 
@@ -358,25 +410,25 @@ public class semanticaParser extends Parser {
 
 			}
 
-			match(input,17,FOLLOW_17_in_metodo119); 
+			match(input,17,FOLLOW_17_in_metodo120); 
 			 
 			                pushTSG((id1!=null?id1.getText():null),"metodo"); 
 			            
-			match(input,24,FOLLOW_24_in_metodo149); 
+			match(input,24,FOLLOW_24_in_metodo150); 
 			// semantica.g:64:17: ( instruccion )*
-			loop5:
+			loop6:
 			while (true) {
-				int alt5=2;
-				int LA5_0 = input.LA(1);
-				if ( ((LA5_0 >= DOUBLE && LA5_0 <= INT)||LA5_0==VOID) ) {
-					alt5=1;
+				int alt6=2;
+				int LA6_0 = input.LA(1);
+				if ( ((LA6_0 >= DOUBLE && LA6_0 <= INT)||LA6_0==VOID) ) {
+					alt6=1;
 				}
 
-				switch (alt5) {
+				switch (alt6) {
 				case 1 :
 					// semantica.g:64:17: instruccion
 					{
-					pushFollow(FOLLOW_instruccion_in_metodo169);
+					pushFollow(FOLLOW_instruccion_in_metodo170);
 					instruccion();
 					state._fsp--;
 
@@ -384,11 +436,11 @@ public class semanticaParser extends Parser {
 					break;
 
 				default :
-					break loop5;
+					break loop6;
 				}
 			}
 
-			match(input,25,FOLLOW_25_in_metodo184); 
+			match(input,25,FOLLOW_25_in_metodo185); 
 			TSL.clear();
 			}
 
@@ -417,16 +469,16 @@ public class semanticaParser extends Parser {
 			// semantica.g:67:12: ( modificAcceso )? tipo id1= ID ( COMMA id2= ID )* SEMICOLON
 			{
 			// semantica.g:67:12: ( modificAcceso )?
-			int alt6=2;
-			int LA6_0 = input.LA(1);
-			if ( ((LA6_0 >= PRIVATE && LA6_0 <= PUBLIC)) ) {
-				alt6=1;
+			int alt7=2;
+			int LA7_0 = input.LA(1);
+			if ( ((LA7_0 >= PRIVATE && LA7_0 <= PUBLIC)) ) {
+				alt7=1;
 			}
-			switch (alt6) {
+			switch (alt7) {
 				case 1 :
 					// semantica.g:67:12: modificAcceso
 					{
-					pushFollow(FOLLOW_modificAcceso_in_atributo195);
+					pushFollow(FOLLOW_modificAcceso_in_atributo196);
 					modificAcceso();
 					state._fsp--;
 
@@ -435,37 +487,37 @@ public class semanticaParser extends Parser {
 
 			}
 
-			pushFollow(FOLLOW_tipo_in_atributo198);
+			pushFollow(FOLLOW_tipo_in_atributo199);
 			tipo2=tipo();
 			state._fsp--;
 
-			id1=(Token)match(input,ID,FOLLOW_ID_in_atributo202); 
+			id1=(Token)match(input,ID,FOLLOW_ID_in_atributo203); 
 			 pushTSG((id1!=null?id1.getText():null), (tipo2!=null?input.toString(tipo2.start,tipo2.stop):null)); 
 			// semantica.g:68:12: ( COMMA id2= ID )*
-			loop7:
+			loop8:
 			while (true) {
-				int alt7=2;
-				int LA7_0 = input.LA(1);
-				if ( (LA7_0==COMMA) ) {
-					alt7=1;
+				int alt8=2;
+				int LA8_0 = input.LA(1);
+				if ( (LA8_0==COMMA) ) {
+					alt8=1;
 				}
 
-				switch (alt7) {
+				switch (alt8) {
 				case 1 :
 					// semantica.g:68:13: COMMA id2= ID
 					{
-					match(input,COMMA,FOLLOW_COMMA_in_atributo219); 
-					id2=(Token)match(input,ID,FOLLOW_ID_in_atributo223); 
+					match(input,COMMA,FOLLOW_COMMA_in_atributo220); 
+					id2=(Token)match(input,ID,FOLLOW_ID_in_atributo224); 
 					 pushTSG((id2!=null?id2.getText():null), (tipo2!=null?input.toString(tipo2.start,tipo2.stop):null)); 
 					}
 					break;
 
 				default :
-					break loop7;
+					break loop8;
 				}
 			}
 
-			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_atributo241); 
+			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_atributo242); 
 			}
 
 		}
@@ -486,26 +538,26 @@ public class semanticaParser extends Parser {
 	public final void instruccion() throws RecognitionException {
 		try {
 			// semantica.g:71:17: ( asignacion | decl_local )
-			int alt8=2;
-			int LA8_0 = input.LA(1);
-			if ( (LA8_0==ID) ) {
-				alt8=1;
+			int alt9=2;
+			int LA9_0 = input.LA(1);
+			if ( (LA9_0==ID) ) {
+				alt9=1;
 			}
-			else if ( (LA8_0==DOUBLE||LA8_0==INT||LA8_0==VOID) ) {
-				alt8=2;
+			else if ( (LA9_0==DOUBLE||LA9_0==INT||LA9_0==VOID) ) {
+				alt9=2;
 			}
 
 			else {
 				NoViableAltException nvae =
-					new NoViableAltException("", 8, 0, input);
+					new NoViableAltException("", 9, 0, input);
 				throw nvae;
 			}
 
-			switch (alt8) {
+			switch (alt9) {
 				case 1 :
 					// semantica.g:71:19: asignacion
 					{
-					pushFollow(FOLLOW_asignacion_in_instruccion253);
+					pushFollow(FOLLOW_asignacion_in_instruccion254);
 					asignacion();
 					state._fsp--;
 
@@ -514,7 +566,7 @@ public class semanticaParser extends Parser {
 				case 2 :
 					// semantica.g:71:32: decl_local
 					{
-					pushFollow(FOLLOW_decl_local_in_instruccion257);
+					pushFollow(FOLLOW_decl_local_in_instruccion258);
 					decl_local();
 					state._fsp--;
 
@@ -545,9 +597,9 @@ public class semanticaParser extends Parser {
 			// semantica.g:73:16: ( ID '=' expr SEMICOLON )
 			// semantica.g:73:18: ID '=' expr SEMICOLON
 			{
-			ID3=(Token)match(input,ID,FOLLOW_ID_in_asignacion269); 
-			match(input,22,FOLLOW_22_in_asignacion271); 
-			pushFollow(FOLLOW_expr_in_asignacion273);
+			ID3=(Token)match(input,ID,FOLLOW_ID_in_asignacion270); 
+			match(input,22,FOLLOW_22_in_asignacion272); 
+			pushFollow(FOLLOW_expr_in_asignacion274);
 			expr4=expr();
 			state._fsp--;
 
@@ -568,7 +620,7 @@ public class semanticaParser extends Parser {
 			                            (expr4 == 1 ? "int" : "double") + ").");
 			        }
 			    
-			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_asignacion277); 
+			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_asignacion278); 
 			}
 
 		}
@@ -596,37 +648,37 @@ public class semanticaParser extends Parser {
 			// semantica.g:91:15: (tipo1= tipo id1= ID ( COMMA tipo2= tipo id2= ID )* )
 			// semantica.g:91:17: tipo1= tipo id1= ID ( COMMA tipo2= tipo id2= ID )*
 			{
-			pushFollow(FOLLOW_tipo_in_decl_args291);
+			pushFollow(FOLLOW_tipo_in_decl_args292);
 			tipo1=tipo();
 			state._fsp--;
 
-			id1=(Token)match(input,ID,FOLLOW_ID_in_decl_args295); 
+			id1=(Token)match(input,ID,FOLLOW_ID_in_decl_args296); 
 			pushTSL((id1!=null?id1.getText():null), (tipo1!=null?input.toString(tipo1.start,tipo1.stop):null));
 			// semantica.g:92:9: ( COMMA tipo2= tipo id2= ID )*
-			loop9:
+			loop10:
 			while (true) {
-				int alt9=2;
-				int LA9_0 = input.LA(1);
-				if ( (LA9_0==COMMA) ) {
-					alt9=1;
+				int alt10=2;
+				int LA10_0 = input.LA(1);
+				if ( (LA10_0==COMMA) ) {
+					alt10=1;
 				}
 
-				switch (alt9) {
+				switch (alt10) {
 				case 1 :
 					// semantica.g:92:10: COMMA tipo2= tipo id2= ID
 					{
-					match(input,COMMA,FOLLOW_COMMA_in_decl_args310); 
-					pushFollow(FOLLOW_tipo_in_decl_args314);
+					match(input,COMMA,FOLLOW_COMMA_in_decl_args311); 
+					pushFollow(FOLLOW_tipo_in_decl_args315);
 					tipo2=tipo();
 					state._fsp--;
 
-					id2=(Token)match(input,ID,FOLLOW_ID_in_decl_args318); 
+					id2=(Token)match(input,ID,FOLLOW_ID_in_decl_args319); 
 					pushTSL((id2!=null?id2.getText():null), (tipo2!=null?input.toString(tipo2.start,tipo2.stop):null));
 					}
 					break;
 
 				default :
-					break loop9;
+					break loop10;
 				}
 			}
 
@@ -656,37 +708,37 @@ public class semanticaParser extends Parser {
 			// semantica.g:94:16: ( tipo id1= ID ( ',' id2= ID )* SEMICOLON )
 			// semantica.g:94:18: tipo id1= ID ( ',' id2= ID )* SEMICOLON
 			{
-			pushFollow(FOLLOW_tipo_in_decl_local334);
+			pushFollow(FOLLOW_tipo_in_decl_local335);
 			tipo5=tipo();
 			state._fsp--;
 
-			id1=(Token)match(input,ID,FOLLOW_ID_in_decl_local338); 
+			id1=(Token)match(input,ID,FOLLOW_ID_in_decl_local339); 
 			pushTSL((id1!=null?id1.getText():null), (tipo5!=null?input.toString(tipo5.start,tipo5.stop):null));
 			// semantica.g:94:64: ( ',' id2= ID )*
-			loop10:
+			loop11:
 			while (true) {
-				int alt10=2;
-				int LA10_0 = input.LA(1);
-				if ( (LA10_0==COMMA) ) {
-					alt10=1;
+				int alt11=2;
+				int LA11_0 = input.LA(1);
+				if ( (LA11_0==COMMA) ) {
+					alt11=1;
 				}
 
-				switch (alt10) {
+				switch (alt11) {
 				case 1 :
 					// semantica.g:94:65: ',' id2= ID
 					{
-					match(input,COMMA,FOLLOW_COMMA_in_decl_local343); 
-					id2=(Token)match(input,ID,FOLLOW_ID_in_decl_local348); 
+					match(input,COMMA,FOLLOW_COMMA_in_decl_local344); 
+					id2=(Token)match(input,ID,FOLLOW_ID_in_decl_local349); 
 					pushTSL((id2!=null?id2.getText():null), (tipo5!=null?input.toString(tipo5.start,tipo5.stop):null));
 					}
 					break;
 
 				default :
-					break loop10;
+					break loop11;
 				}
 			}
 
-			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_decl_local354); 
+			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_decl_local355); 
 			}
 
 		}
@@ -716,7 +768,7 @@ public class semanticaParser extends Parser {
 			// semantica.g:98:9: (m1= multExpr (op= ( '+' | '-' ) m2= multExpr )* )
 			// semantica.g:98:11: m1= multExpr (op= ( '+' | '-' ) m2= multExpr )*
 			{
-			pushFollow(FOLLOW_multExpr_in_expr383);
+			pushFollow(FOLLOW_multExpr_in_expr384);
 			m1=multExpr();
 			state._fsp--;
 
@@ -724,15 +776,15 @@ public class semanticaParser extends Parser {
 			            tipo = m1;
 			        
 			// semantica.g:101:9: (op= ( '+' | '-' ) m2= multExpr )*
-			loop11:
+			loop12:
 			while (true) {
-				int alt11=2;
-				int LA11_0 = input.LA(1);
-				if ( ((LA11_0 >= 19 && LA11_0 <= 20)) ) {
-					alt11=1;
+				int alt12=2;
+				int LA12_0 = input.LA(1);
+				if ( ((LA12_0 >= 19 && LA12_0 <= 20)) ) {
+					alt12=1;
 				}
 
-				switch (alt11) {
+				switch (alt12) {
 				case 1 :
 					// semantica.g:101:10: op= ( '+' | '-' ) m2= multExpr
 					{
@@ -745,7 +797,7 @@ public class semanticaParser extends Parser {
 						MismatchedSetException mse = new MismatchedSetException(null,input);
 						throw mse;
 					}
-					pushFollow(FOLLOW_multExpr_in_expr409);
+					pushFollow(FOLLOW_multExpr_in_expr410);
 					m2=multExpr();
 					state._fsp--;
 
@@ -761,7 +813,7 @@ public class semanticaParser extends Parser {
 					break;
 
 				default :
-					break loop11;
+					break loop12;
 				}
 			}
 
@@ -795,7 +847,7 @@ public class semanticaParser extends Parser {
 			// semantica.g:111:9: (a1= atom (op= ( '*' | '/' ) a2= atom )* )
 			// semantica.g:111:11: a1= atom (op= ( '*' | '/' ) a2= atom )*
 			{
-			pushFollow(FOLLOW_atom_in_multExpr441);
+			pushFollow(FOLLOW_atom_in_multExpr442);
 			a1=atom();
 			state._fsp--;
 
@@ -803,15 +855,15 @@ public class semanticaParser extends Parser {
 			            tipo = a1; 
 			        
 			// semantica.g:114:9: (op= ( '*' | '/' ) a2= atom )*
-			loop12:
+			loop13:
 			while (true) {
-				int alt12=2;
-				int LA12_0 = input.LA(1);
-				if ( (LA12_0==18||LA12_0==21) ) {
-					alt12=1;
+				int alt13=2;
+				int LA13_0 = input.LA(1);
+				if ( (LA13_0==18||LA13_0==21) ) {
+					alt13=1;
 				}
 
-				switch (alt12) {
+				switch (alt13) {
 				case 1 :
 					// semantica.g:114:10: op= ( '*' | '/' ) a2= atom
 					{
@@ -824,7 +876,7 @@ public class semanticaParser extends Parser {
 						MismatchedSetException mse = new MismatchedSetException(null,input);
 						throw mse;
 					}
-					pushFollow(FOLLOW_atom_in_multExpr468);
+					pushFollow(FOLLOW_atom_in_multExpr469);
 					a2=atom();
 					state._fsp--;
 
@@ -840,7 +892,7 @@ public class semanticaParser extends Parser {
 					break;
 
 				default :
-					break loop12;
+					break loop13;
 				}
 			}
 
@@ -871,38 +923,38 @@ public class semanticaParser extends Parser {
 
 		try {
 			// semantica.g:124:9: ( ID | CINT | CDOUBLE | '(' expr ')' )
-			int alt13=4;
+			int alt14=4;
 			switch ( input.LA(1) ) {
 			case ID:
 				{
-				alt13=1;
+				alt14=1;
 				}
 				break;
 			case CINT:
 				{
-				alt13=2;
+				alt14=2;
 				}
 				break;
 			case CDOUBLE:
 				{
-				alt13=3;
+				alt14=3;
 				}
 				break;
 			case 16:
 				{
-				alt13=4;
+				alt14=4;
 				}
 				break;
 			default:
 				NoViableAltException nvae =
-					new NoViableAltException("", 13, 0, input);
+					new NoViableAltException("", 14, 0, input);
 				throw nvae;
 			}
-			switch (alt13) {
+			switch (alt14) {
 				case 1 :
 					// semantica.g:124:11: ID
 					{
-					ID6=(Token)match(input,ID,FOLLOW_ID_in_atom497); 
+					ID6=(Token)match(input,ID,FOLLOW_ID_in_atom498); 
 
 					            Integer tipoVar = (Integer) TSL.get((ID6!=null?ID6.getText():null));
 					            
@@ -924,27 +976,27 @@ public class semanticaParser extends Parser {
 				case 2 :
 					// semantica.g:140:11: CINT
 					{
-					match(input,CINT,FOLLOW_CINT_in_atom511); 
+					match(input,CINT,FOLLOW_CINT_in_atom512); 
 					 tipo = 1; 
 					}
 					break;
 				case 3 :
 					// semantica.g:141:11: CDOUBLE
 					{
-					match(input,CDOUBLE,FOLLOW_CDOUBLE_in_atom531); 
+					match(input,CDOUBLE,FOLLOW_CDOUBLE_in_atom532); 
 					 tipo = 2; 
 					}
 					break;
 				case 4 :
 					// semantica.g:142:11: '(' expr ')'
 					{
-					match(input,16,FOLLOW_16_in_atom548); 
-					pushFollow(FOLLOW_expr_in_atom550);
+					match(input,16,FOLLOW_16_in_atom549); 
+					pushFollow(FOLLOW_expr_in_atom551);
 					expr7=expr();
 					state._fsp--;
 
 					 tipo = expr7; 
-					match(input,17,FOLLOW_17_in_atom555); 
+					match(input,17,FOLLOW_17_in_atom556); 
 					}
 					break;
 
@@ -1044,46 +1096,46 @@ public class semanticaParser extends Parser {
 	public static final BitSet FOLLOW_metodo_in_miembro89 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_atributo_in_miembro93 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_modificAcceso_in_metodo106 = new BitSet(new long[]{0x0000000000004280L});
-	public static final BitSet FOLLOW_tipo_in_metodo108 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_metodo112 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_16_in_metodo114 = new BitSet(new long[]{0x0000000000024280L});
-	public static final BitSet FOLLOW_decl_args_in_metodo116 = new BitSet(new long[]{0x0000000000020000L});
-	public static final BitSet FOLLOW_17_in_metodo119 = new BitSet(new long[]{0x0000000001000000L});
-	public static final BitSet FOLLOW_24_in_metodo149 = new BitSet(new long[]{0x0000000002004380L});
-	public static final BitSet FOLLOW_instruccion_in_metodo169 = new BitSet(new long[]{0x0000000002004380L});
-	public static final BitSet FOLLOW_25_in_metodo184 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_modificAcceso_in_atributo195 = new BitSet(new long[]{0x0000000000004280L});
-	public static final BitSet FOLLOW_tipo_in_atributo198 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_atributo202 = new BitSet(new long[]{0x0000000000002040L});
-	public static final BitSet FOLLOW_COMMA_in_atributo219 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_atributo223 = new BitSet(new long[]{0x0000000000002040L});
-	public static final BitSet FOLLOW_SEMICOLON_in_atributo241 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_asignacion_in_instruccion253 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_decl_local_in_instruccion257 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_asignacion269 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_22_in_asignacion271 = new BitSet(new long[]{0x0000000000010130L});
-	public static final BitSet FOLLOW_expr_in_asignacion273 = new BitSet(new long[]{0x0000000000002000L});
-	public static final BitSet FOLLOW_SEMICOLON_in_asignacion277 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_tipo_in_decl_args291 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_decl_args295 = new BitSet(new long[]{0x0000000000000042L});
-	public static final BitSet FOLLOW_COMMA_in_decl_args310 = new BitSet(new long[]{0x0000000000004280L});
-	public static final BitSet FOLLOW_tipo_in_decl_args314 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_decl_args318 = new BitSet(new long[]{0x0000000000000042L});
-	public static final BitSet FOLLOW_tipo_in_decl_local334 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_decl_local338 = new BitSet(new long[]{0x0000000000002040L});
-	public static final BitSet FOLLOW_COMMA_in_decl_local343 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ID_in_decl_local348 = new BitSet(new long[]{0x0000000000002040L});
-	public static final BitSet FOLLOW_SEMICOLON_in_decl_local354 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_multExpr_in_expr383 = new BitSet(new long[]{0x0000000000180002L});
-	public static final BitSet FOLLOW_set_in_expr399 = new BitSet(new long[]{0x0000000000010130L});
-	public static final BitSet FOLLOW_multExpr_in_expr409 = new BitSet(new long[]{0x0000000000180002L});
-	public static final BitSet FOLLOW_atom_in_multExpr441 = new BitSet(new long[]{0x0000000000240002L});
-	public static final BitSet FOLLOW_set_in_multExpr458 = new BitSet(new long[]{0x0000000000010130L});
-	public static final BitSet FOLLOW_atom_in_multExpr468 = new BitSet(new long[]{0x0000000000240002L});
-	public static final BitSet FOLLOW_ID_in_atom497 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CINT_in_atom511 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CDOUBLE_in_atom531 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_16_in_atom548 = new BitSet(new long[]{0x0000000000010130L});
-	public static final BitSet FOLLOW_expr_in_atom550 = new BitSet(new long[]{0x0000000000020000L});
-	public static final BitSet FOLLOW_17_in_atom555 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_tipo_in_metodo109 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_metodo113 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_16_in_metodo115 = new BitSet(new long[]{0x0000000000024280L});
+	public static final BitSet FOLLOW_decl_args_in_metodo117 = new BitSet(new long[]{0x0000000000020000L});
+	public static final BitSet FOLLOW_17_in_metodo120 = new BitSet(new long[]{0x0000000001000000L});
+	public static final BitSet FOLLOW_24_in_metodo150 = new BitSet(new long[]{0x0000000002004380L});
+	public static final BitSet FOLLOW_instruccion_in_metodo170 = new BitSet(new long[]{0x0000000002004380L});
+	public static final BitSet FOLLOW_25_in_metodo185 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_modificAcceso_in_atributo196 = new BitSet(new long[]{0x0000000000004280L});
+	public static final BitSet FOLLOW_tipo_in_atributo199 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_atributo203 = new BitSet(new long[]{0x0000000000002040L});
+	public static final BitSet FOLLOW_COMMA_in_atributo220 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_atributo224 = new BitSet(new long[]{0x0000000000002040L});
+	public static final BitSet FOLLOW_SEMICOLON_in_atributo242 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_asignacion_in_instruccion254 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_decl_local_in_instruccion258 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_asignacion270 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_22_in_asignacion272 = new BitSet(new long[]{0x0000000000010130L});
+	public static final BitSet FOLLOW_expr_in_asignacion274 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_SEMICOLON_in_asignacion278 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_tipo_in_decl_args292 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_decl_args296 = new BitSet(new long[]{0x0000000000000042L});
+	public static final BitSet FOLLOW_COMMA_in_decl_args311 = new BitSet(new long[]{0x0000000000004280L});
+	public static final BitSet FOLLOW_tipo_in_decl_args315 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_decl_args319 = new BitSet(new long[]{0x0000000000000042L});
+	public static final BitSet FOLLOW_tipo_in_decl_local335 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_decl_local339 = new BitSet(new long[]{0x0000000000002040L});
+	public static final BitSet FOLLOW_COMMA_in_decl_local344 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ID_in_decl_local349 = new BitSet(new long[]{0x0000000000002040L});
+	public static final BitSet FOLLOW_SEMICOLON_in_decl_local355 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_multExpr_in_expr384 = new BitSet(new long[]{0x0000000000180002L});
+	public static final BitSet FOLLOW_set_in_expr400 = new BitSet(new long[]{0x0000000000010130L});
+	public static final BitSet FOLLOW_multExpr_in_expr410 = new BitSet(new long[]{0x0000000000180002L});
+	public static final BitSet FOLLOW_atom_in_multExpr442 = new BitSet(new long[]{0x0000000000240002L});
+	public static final BitSet FOLLOW_set_in_multExpr459 = new BitSet(new long[]{0x0000000000010130L});
+	public static final BitSet FOLLOW_atom_in_multExpr469 = new BitSet(new long[]{0x0000000000240002L});
+	public static final BitSet FOLLOW_ID_in_atom498 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CINT_in_atom512 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CDOUBLE_in_atom532 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_16_in_atom549 = new BitSet(new long[]{0x0000000000010130L});
+	public static final BitSet FOLLOW_expr_in_atom551 = new BitSet(new long[]{0x0000000000020000L});
+	public static final BitSet FOLLOW_17_in_atom556 = new BitSet(new long[]{0x0000000000000002L});
 }
